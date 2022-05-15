@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:presensi_himaster/controller/mainController.dart';
+import 'package:presensi_himaster/screen/main_menu.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class Login extends StatelessWidget {
@@ -9,7 +12,8 @@ class Login extends StatelessWidget {
   final TextEditingController _passTextController = TextEditingController();
 
   final bool _autoValidate = true;
-  final ThemeConfig size = ThemeConfig();
+  final mainController = Get.find<MainController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,14 +40,14 @@ class Login extends StatelessWidget {
                     ),
                     Text(
                       'Log In',
-                      style: semiBoldStyle,
+                      style: semiBoldStyle(20.0, black),
                     ),
                     const Spacer(
                       flex: 1,
                     ),
                     Text(
                       'Masukkan username dan password kamu yang sudah terdaftar',
-                      style: descStyle,
+                      style: textStyle(12, grayCr),
                     ),
                   ],
                 ),
@@ -62,7 +66,7 @@ class Login extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          width: 0.96 * size.getWidth(context),
+                          width: 0.96 * getWidth(context),
                           height: 82,
                           child: TextFormField(
                             controller: _emailTextController,
@@ -92,7 +96,7 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 0.96 * size.getWidth(context),
+                          width: 0.96 * getWidth(context),
                           child: TextFormField(
                             controller: _passTextController,
                             keyboardType: TextInputType.emailAddress,
@@ -120,11 +124,13 @@ class Login extends StatelessWidget {
                           flex: 2,
                         ),
                         SizedBox(
-                          width: 0.96 * size.getWidth(context),
-                          height: 0.07 * size.getHeight(context),
+                          width: 0.96 * getWidth(context),
+                          height: 0.07 * getHeight(context),
                           child: OutlinedButton(
-                              style: roundedBox,
-                              onPressed: () {},
+                              style: roundedButton(blueCr),
+                              onPressed: () {
+                                mainController.pageTransition(context, MainMenu());
+                              },
                               child: const Text('Login Sekarang')),
                         ),
                         const Spacer(

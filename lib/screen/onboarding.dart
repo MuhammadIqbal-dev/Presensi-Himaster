@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:presensi_himaster/screen/home.dart';
 import 'package:presensi_himaster/screen/login.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/OnBoardWidget.dart';
+import 'package:presensi_himaster/widget/on_board_widget.dart';
 
 import '../model/slide_model.dart';
 
@@ -82,7 +82,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                 curve: Curves.easeInOut);
                           })
                       : OutlinedButton(
-                        style: roundedBox,
+                        style: roundedButton(blueCr),
                           onPressed: () {
                             if (currentIndex == slides.length - 1) {
                               Navigator.pushReplacement(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:presensi_himaster/controller/mainController.dart';
 import 'dart:async';
 
 import 'package:presensi_himaster/screen/onboarding.dart';
@@ -12,6 +14,8 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  final mainController = Get.put(MainController());
+
   @override
   void initState() {
     startSplash();
