@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widget/status_card.dart';
+
 class AbsenCardBuilder extends StatelessWidget {
   final List items = [
     'It club ke 1',
@@ -22,14 +23,14 @@ class AbsenCardBuilder extends StatelessWidget {
         itemBuilder: (context, index) {
           return Container(
             width: 192,
+            decoration: roundedShadowBox(white, 12),
             padding: const EdgeInsets.all(16.0),
-            margin: const EdgeInsets.only(right: 8.0),
-            decoration: roundedBox(white, 12),
+            margin: const EdgeInsets.only(right: 4.0, left: 4.0, top: 8.0, bottom: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StatusCard(
-                  status: index,
+                  status: enable[index],
                 ),
                 const Spacer(
                   flex: 2,
@@ -83,17 +84,20 @@ class AbsenCardBuilder extends StatelessWidget {
                   flex: 1,
                 ),
                 Expanded(
-                  flex: 4,
+                    flex: 4,
                     child: Row(
-                  children: [
-                    Text(
-                      'Absen Sekarang',
-                      style: semiBoldStyle(10, blueCr),
-                    ),
-                    const Spacer(),
-                    Image.asset('assets/imgs/next.png', height: 32,)
-                  ],
-                ))
+                      children: [
+                        Text(
+                          'Absen Sekarang',
+                          style: semiBoldStyle(10, blueCr),
+                        ),
+                        const Spacer(),
+                        Image.asset(
+                          'assets/imgs/next.png',
+                          height: 32,
+                        )
+                      ],
+                    ))
               ],
             ),
           );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/mainController.dart';
+import 'package:presensi_himaster/controller/main_controller.dart';
 import 'dart:async';
 
 import 'package:presensi_himaster/screen/onboarding.dart';
@@ -51,7 +51,7 @@ class _SplashState extends State<Splash> {
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                stops: [0.1, 0.5, 0.9],
+                stops: const [0.1, 0.5, 0.9],
                 colors: [startCr, midCr, darkBlueCr])),
         child: const Center(child: Image(image: AssetImage('assets/imgs/logo.png'))),
       ),

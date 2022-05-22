@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:presensi_himaster/screen/home.dart';
 import 'package:presensi_himaster/screen/login.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widget/on_board_widget.dart';
@@ -66,7 +65,7 @@ class _OnBoardingState extends State<OnBoarding> {
           Flexible(
               flex: 1,
               child: AnimatedContainer(
-                  duration: Duration(milliseconds: 80),
+                  duration: const Duration(milliseconds: 80),
                   curve: Curves.linear,
                   width: currentIndex != slides.length - 1
                       ? 0.28 * (MediaQuery.of(context).size.height)

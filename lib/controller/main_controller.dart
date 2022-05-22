@@ -9,6 +9,13 @@ class MainController extends GetxController {
   CustomAlertDialog customAlertDialog = CustomAlertDialog();
 
   Rx<DateTime> now = DateTime.now().obs;
+  final List itemsProfile = [
+    'Semua Kegiatan',
+    'Kegiatan Dihadiri',
+    'Kegiatan Tidak Dihadiri'
+  ].obs;
+  RxInt enabledProfile = 0.obs;
+  RxList droppedDown = [].obs;
 
   final Duration _duration = const Duration(seconds: 10);
   void updateDate() {
@@ -29,6 +36,21 @@ class MainController extends GetxController {
         context,
         PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 500),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            pageBuilder: (context, animation, secondaryAnimation) => page));
+  }
+
+  void pageGo(BuildContext context, Widget page) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 100),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return FadeTransition(

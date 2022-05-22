@@ -6,6 +6,7 @@ Color darkBlueCr = const Color(0xFF2877BD);
 Color blueCr = const Color(0xFF56CCF2);
 Color redCr = const Color(0xFFEB5757);
 Color lightRedCr = const Color(0xFFFFE3E3);
+Color lightGrayCr = const Color(0xFFBDBDBD);
 Color grayCr = const Color(0xFF828282);
 Color darkGreenCr = const Color(0xFF27AE60);
 Color greenCr = const Color(0xFF42D07D);
@@ -70,9 +71,9 @@ BoxDecoration roundedShadowBox(Color colors, double radius) {
       borderRadius: BorderRadius.circular(radius),
       boxShadow: [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.2),
-          spreadRadius: 2,
-          blurRadius: 10,
+          color: Colors.grey.withOpacity(0.22),
+          spreadRadius: 1,
+          blurRadius: 8,
         )
       ]);
 }

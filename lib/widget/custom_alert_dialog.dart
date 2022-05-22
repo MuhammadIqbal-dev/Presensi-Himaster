@@ -29,28 +29,33 @@ class CustomAlertDialog {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title),
+      title: Text(title, style: semiBoldStyle(14, black),),
       content: SizedBox(
-        height: 0.14 * getHeight(context),
+        height: 0.08 * getHeight(context),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(desc),
+            Text(desc, style: textStyle(10, black),),
+            
             TextField(
-              decoration: const InputDecoration(hintText: 'Input kode unik'),
+              decoration: const InputDecoration(hintText: 'Input kode unik', hintStyle: TextStyle(fontSize: 13)),
               controller: _textController,
-              
             ),
           ],
         ),
       ),
-      actionsAlignment: MainAxisAlignment.center,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12.0))) ,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0))),
       actions: [
-        cancelButton,
-        continueButton,
+        SizedBox(
+            height: 48, width: 0.25 * getWidth(context), child: cancelButton),
+        SizedBox(
+            height: 48, width: 0.25 * getWidth(context), child: continueButton),
       ],
+      actionsPadding: const EdgeInsets.only(bottom: 16),
+      actionsAlignment: MainAxisAlignment.center,
+
     );
     showDialog(
       context: context,

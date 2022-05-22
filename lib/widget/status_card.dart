@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class StatusCard extends StatelessWidget {
-  StatusCard({Key? key, required this.status}) : super(key: key);
-  int status;
+  const StatusCard({Key? key, required this.status}) : super(key: key);
+  final int status;
   @override
   Widget build(BuildContext context) {
+    // Hadir
     if (status == 1) {
       return Container(
-        height: 42,
+        height: 32,
         width: 0.22 * getWidth(context),
         decoration: roundedBox(lightGreenCr, 6),
         padding: const EdgeInsets.all(8.0),
@@ -24,9 +25,10 @@ class StatusCard extends StatelessWidget {
           ],
         ),
       );
+    // Tidak Hadir
     } else if (status == 2) {
       return Container(
-        height: 42,
+        height: 32,
         width: 0.22 * getWidth(context),
         decoration: roundedBox(lightRedCr, 6),
         padding: const EdgeInsets.all(8.0),
@@ -42,9 +44,10 @@ class StatusCard extends StatelessWidget {
           ],
         ),
       );
+    // Belum ABSEN
     } else {
       return Container(
-        height: 42,
+        height: 32,
         width: 0.22 * getWidth(context),
         decoration: roundedBox(lightYellowCr, 6),
         padding: const EdgeInsets.all(8.0),

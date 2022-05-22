@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:presensi_himaster/screen/onboarding.dart';
 import 'package:presensi_himaster/screen/splash.dart';
 
 void main() {

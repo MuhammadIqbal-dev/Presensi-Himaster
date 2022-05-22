@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/mainController.dart';
+import 'package:presensi_himaster/controller/main_controller.dart';
+import 'package:presensi_himaster/screen/profile.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/absenCardBuilder.dart';
-import 'package:presensi_himaster/widget/categoryBuilder.dart';
-import 'package:presensi_himaster/widget/custom_alert_dialog.dart';
-import 'package:presensi_himaster/widget/statsJadwalWidget.dart';
+import 'package:presensi_himaster/widget/absen_card_builder.dart';
+import 'package:presensi_himaster/widget/category_builder.dart';
+import 'package:presensi_himaster/widget/stats_jadwal_widget.dart';
 
 class MainMenu extends StatelessWidget {
   MainMenu({Key? key}) : super(key: key);
@@ -25,22 +25,33 @@ class MainMenu extends StatelessWidget {
                   // const Spacer(),
                   Row(
                     children: [
-                      const Icon(Icons.ac_unit),
-                      const SizedBox(
-                        width: 14.0,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Selamat datang',
-                            style: textStyle(12, grayCr),
-                          ),
-                          Text(
-                            'Richard felyn',
-                            style: semiBoldStyle(14, black),
-                          )
-                        ],
+                      InkWell(
+                        onTap: () {
+                          mainController.pageGo(context, Profile());
+                        },
+                        child: Row(
+                          children: [
+                            const CircleAvatar(
+                                backgroundImage:
+                                    AssetImage('assets/imgs/pp.png')),
+                            const SizedBox(
+                              width: 14.0,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Selamat datang',
+                                  style: textStyle(12, grayCr),
+                                ),
+                                Text(
+                                  'Richard felyn',
+                                  style: semiBoldStyle(14, black),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       const Spacer(
                         flex: 5,
@@ -58,7 +69,8 @@ class MainMenu extends StatelessWidget {
                   ),
                   // const Spacer(),
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                   SizedBox(
                     height: 50,
@@ -95,10 +107,13 @@ class MainMenu extends StatelessWidget {
                         const Spacer(),
                         Container(
                           padding: const EdgeInsets.only(top: 2, bottom: 2),
-                          height: double.infinity ,
+                          height: double.infinity,
                           child: OutlinedButton(
                             onPressed: () {
-                              mainController.customAlertDialog.showAlertDialog(context, 'tes', 'tes');
+                              mainController.customAlertDialog.showAlertDialog(
+                                  context,
+                                  'Masukkan Kode Kegiatan',
+                                  'Kode Kegiatan');
                             },
                             child: const Text('+ Kegiatan'),
                             style: roundedButton(darkGreenCr),
@@ -108,7 +123,8 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                   SizedBox(
                     height: 35,
@@ -118,17 +134,18 @@ class MainMenu extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                   Container(
-                    height: 220,
-                    decoration: roundedShadowBox(Colors.transparent, 12),
+                    height: 230,
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: AbsenCardBuilder()),
                   ),
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                   ConstrainedBox(
                     constraints: const BoxConstraints(minHeight: 48),
@@ -145,7 +162,8 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -155,7 +173,8 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                   Container(
                     height: 160,
@@ -165,7 +184,8 @@ class MainMenu extends StatelessWidget {
                         child: StatsJadwalWidget()),
                   ),
                   SizedBox(
-                    height: 0.02 * getHeight(context) + 0.005 * getWidth(context),
+                    height:
+                        0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
                 ],
               ),

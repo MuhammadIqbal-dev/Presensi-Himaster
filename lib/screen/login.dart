@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/mainController.dart';
+import 'package:presensi_himaster/controller/main_controller.dart';
 import 'package:presensi_himaster/screen/main_menu.dart';
 import 'package:presensi_himaster/theme.dart';
 
