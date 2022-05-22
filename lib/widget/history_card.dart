@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:presensi_himaster/controller/main_controller.dart';
 import 'package:presensi_himaster/theme.dart';
+import 'package:presensi_himaster/widget/divisi_card.dart';
 import 'package:presensi_himaster/widget/status_card.dart';
 
 class HistoryCard extends StatelessWidget {
@@ -23,7 +24,7 @@ class HistoryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -33,7 +34,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +58,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +82,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +103,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +127,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,7 +151,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,10 +160,7 @@ class HistoryCard extends StatelessWidget {
                           'Divisi Penyelenggara',
                           style: textStyle(10, lightGrayCr),
                         ),
-                        Text(
-                          'TODO DIVISI',
-                          style: textStyle(12, grayCr),
-                        ),
+                        const DivisiCard(name: 'Divisi Keilmuan')
                       ],
                     )
                   ],
@@ -172,15 +170,23 @@ class HistoryCard extends StatelessWidget {
             const Spacer(
               flex: 4,
             ),
-            InkWell(
-              onTap: () {
-                if (mainController.droppedDown[idx!]) {
-                  mainController.droppedDown[idx!] = false;
-                } else {
-                  mainController.droppedDown[idx!] = true;
-                }
-              },
-              child: const Icon(Icons.keyboard_arrow_up_rounded, size: 34,),
+            Column(
+              children: [
+                const Spacer(flex: 3,),
+                InkWell(
+                    onTap: () {
+                      if (mainController.droppedDown[idx!]) {
+                        mainController.droppedDown[idx!] = false;
+                      } else {
+                        mainController.droppedDown[idx!] = true;
+                      }
+                    },
+                    child: const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      size: 34,
+                    )),
+                const Spacer(flex: 17,),
+              ],
             ),
             const Spacer(
               flex: 1,
@@ -209,7 +215,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Text(
                       '01 January 2022',
@@ -224,7 +230,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Text(
                       'IT Club Pertemuan Ke 1',
@@ -239,7 +245,7 @@ class HistoryCard extends StatelessWidget {
                       color: grayCr,
                     ),
                     SizedBox(
-                      width: 0.02* getWidth(context),
+                      width: 0.02 * getWidth(context),
                     ),
                     Text(
                       'Status Kehadiran :',
@@ -260,7 +266,10 @@ class HistoryCard extends StatelessWidget {
                   mainController.droppedDown[idx!] = true;
                 }
               },
-              child: const Icon(Icons.keyboard_arrow_right_rounded, size: 34,),
+              child: const Icon(
+                Icons.keyboard_arrow_right_rounded,
+                size: 34,
+              ),
             ),
             const Spacer(
               flex: 1,

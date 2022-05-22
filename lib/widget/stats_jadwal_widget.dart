@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:presensi_himaster/controller/main_controller.dart';
+import 'package:presensi_himaster/screen/profile.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class StatsJadwalWidget extends StatelessWidget {
-  const StatsJadwalWidget({Key? key}) : super(key: key);
+  StatsJadwalWidget({Key? key}) : super(key: key);
+  final MainController mainController = Get.find<MainController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +21,16 @@ class StatsJadwalWidget extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: roundedGradBox(6),
           child: Column(
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.api_rounded,
                 size: 20,
               ),
-              Spacer(
+              const Spacer(
                 flex: 3,
               ),
-              Text('Persentase Kehadiran'),
-              Spacer(
+              Text('Persen Kehadiran', style: semiBoldStyle(10, white), textAlign: TextAlign.center,),
+              const Spacer(
                 flex: 1,
               )
             ],
@@ -52,18 +57,23 @@ class StatsJadwalWidget extends StatelessWidget {
               const Spacer(),
               Expanded(
                   flex: 2,
-                  child: Row(
-                    children: [
-                      Text(
-                        'Lihat History',
-                        style: semiBoldStyle(10, blueCr),
-                      ),
-                      const Spacer(),
-                      Image.asset(
-                        'assets/imgs/next.png',
-                        height: 15,
-                      )
-                    ],
+                  child: InkWell(
+                    onTap: () {
+                          mainController.pageGo(context, Profile());
+                        },
+                    child: Row(
+                      children: [
+                        Text(
+                          'Lihat History',
+                          style: semiBoldStyle(10, blueCr),
+                        ),
+                        const Spacer(),
+                        Image.asset(
+                          'assets/imgs/next.png',
+                          height: 15,
+                        )
+                      ],
+                    ),
                   ))
             ],
           ),
@@ -89,18 +99,23 @@ class StatsJadwalWidget extends StatelessWidget {
               const Spacer(),
               Expanded(
                   flex: 2,
-                  child: Row(
-                    children: [
-                      Text(
-                        'Lihat History',
-                        style: semiBoldStyle(10, blueCr),
-                      ),
-                      const Spacer(),
-                      Image.asset(
-                        'assets/imgs/next.png',
-                        height: 15,
-                      )
-                    ],
+                  child: InkWell(
+                    onTap: () {
+                          mainController.pageGo(context, Profile());
+                        },
+                    child: Row(
+                      children: [
+                        Text(
+                          'Lihat History',
+                          style: semiBoldStyle(10, blueCr),
+                        ),
+                        const Spacer(),
+                        Image.asset(
+                          'assets/imgs/next.png',
+                          height: 15,
+                        )
+                      ],
+                    ),
                   ))
             ],
           ),
@@ -126,18 +141,23 @@ class StatsJadwalWidget extends StatelessWidget {
               const Spacer(),
               Expanded(
                   flex: 2,
-                  child: Row(
-                    children: [
-                      Text(
-                        'Lihat History',
-                        style: semiBoldStyle(10, blueCr),
-                      ),
-                      const Spacer(),
-                      Image.asset(
-                        'assets/imgs/next.png',
-                        height: 15,
-                      )
-                    ],
+                  child: InkWell(
+                    onTap: () {
+                          mainController.pageGo(context, Profile());
+                        },
+                    child: Row(
+                      children: [
+                        Text(
+                          'Lihat History',
+                          style: semiBoldStyle(10, blueCr),
+                        ),
+                        const Spacer(),
+                        Image.asset(
+                          'assets/imgs/next.png',
+                          height: 15,
+                        )
+                      ],
+                    ),
                   ))
             ],
           ),

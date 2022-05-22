@@ -16,6 +16,7 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
           backgroundColor: white,
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -113,7 +114,7 @@ class MainMenu extends StatelessWidget {
                               mainController.customAlertDialog.showAlertDialog(
                                   context,
                                   'Masukkan Kode Kegiatan',
-                                  'Kode Kegiatan');
+                                  'KODE KEGIATAN');
                             },
                             child: const Text('+ Kegiatan'),
                             style: roundedButton(darkGreenCr),
@@ -137,7 +138,7 @@ class MainMenu extends StatelessWidget {
                     height:
                         0.02 * getHeight(context) + 0.005 * getWidth(context),
                   ),
-                  Container(
+                  SizedBox(
                     height: 230,
                     child: Align(
                         alignment: Alignment.centerLeft,
@@ -179,7 +180,7 @@ class MainMenu extends StatelessWidget {
                   Container(
                     height: 160,
                     decoration: roundedShadowBox(Colors.transparent, 12),
-                    child: const Align(
+                    child: Align(
                         alignment: Alignment.centerLeft,
                         child: StatsJadwalWidget()),
                   ),

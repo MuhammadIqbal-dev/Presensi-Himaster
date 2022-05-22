@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:presensi_himaster/controller/main_controller.dart';
+import 'package:presensi_himaster/screen/detail_absen.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widget/status_card.dart';
 
 class AbsenCardBuilder extends StatelessWidget {
+  AbsenCardBuilder({Key? key}) : super(key: key);
   final List items = [
     'It club ke 1',
     'It club ke 2',
@@ -11,8 +15,8 @@ class AbsenCardBuilder extends StatelessWidget {
     'It club ke 4',
   ];
   final List enable = [1, 2, 3, 2];
+  MainController mainController = Get.find<MainController>();
 
-  AbsenCardBuilder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class AbsenCardBuilder extends StatelessWidget {
                     ),
                     Text(
                       '08:00 - 12:00 WIB',
-                      style: boldStyle(12, black),
+                      style: boldStyle(12, grayCr),
                     )
                   ],
                 ),
@@ -85,18 +89,23 @@ class AbsenCardBuilder extends StatelessWidget {
                 ),
                 Expanded(
                     flex: 4,
-                    child: Row(
-                      children: [
-                        Text(
-                          'Absen Sekarang',
-                          style: semiBoldStyle(10, blueCr),
-                        ),
-                        const Spacer(),
-                        Image.asset(
-                          'assets/imgs/next.png',
-                          height: 32,
-                        )
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                            mainController.pageGo(context, DetailAbsen(id: enable[index]));
+                          },
+                      child: Row(
+                        children: [
+                          Text(
+                            'Absen Sekarang',
+                            style: semiBoldStyle(10, blueCr),
+                          ),
+                          const Spacer(),
+                          Image.asset(
+                            'assets/imgs/next.png',
+                            height: 32,
+                          )
+                        ],
+                      ),
                     ))
               ],
             ),

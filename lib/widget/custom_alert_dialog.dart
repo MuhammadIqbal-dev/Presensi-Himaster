@@ -3,7 +3,6 @@ import 'package:presensi_himaster/theme.dart';
 
 class CustomAlertDialog {
   final TextEditingController _textController = TextEditingController();
-
   showAlertDialog(BuildContext context, String title, String desc) {
     // set up the buttons
     Widget cancelButton = OutlinedButton(
@@ -31,7 +30,7 @@ class CustomAlertDialog {
     AlertDialog alert = AlertDialog(
       title: Text(title, style: semiBoldStyle(14, black),),
       content: SizedBox(
-        height: 0.08 * getHeight(context),
+        height: 0.10 * getHeight(context),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +38,7 @@ class CustomAlertDialog {
             Text(desc, style: textStyle(10, black),),
             
             TextField(
-              decoration: const InputDecoration(hintText: 'Input kode unik', hintStyle: TextStyle(fontSize: 13)),
+              decoration: InputDecoration(hintText: 'Input kode unik', hintStyle: textStyle(13, grayCr)),
               controller: _textController,
             ),
           ],
