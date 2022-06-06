@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/main_controller.dart';
-import 'package:presensi_himaster/screen/detail_absen.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
+import 'package:presensi_himaster/screens/detail_absen.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/status_card.dart';
+import 'package:presensi_himaster/widgets/status_card.dart';
 
 class AbsenCardBuilder extends StatelessWidget {
   AbsenCardBuilder({Key? key}) : super(key: key);

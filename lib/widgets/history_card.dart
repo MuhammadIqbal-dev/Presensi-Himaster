@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/main_controller.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/divisi_card.dart';
-import 'package:presensi_himaster/widget/status_card.dart';
+import 'package:presensi_himaster/widgets/divisi_card.dart';
+import 'package:presensi_himaster/widgets/status_card.dart';
 
 class HistoryCard extends StatelessWidget {
   HistoryCard({Key? key, this.status, this.idx, this.enable}) : super(key: key);

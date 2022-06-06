@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/main_controller.dart';
-import 'package:presensi_himaster/screen/profile.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
+import 'package:presensi_himaster/screens/calendar.dart';
+import 'package:presensi_himaster/screens/profile.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/absen_card_builder.dart';
-import 'package:presensi_himaster/widget/category_builder.dart';
-import 'package:presensi_himaster/widget/stats_jadwal_widget.dart';
+import 'package:presensi_himaster/widgets/absen_card_builder.dart';
+import 'package:presensi_himaster/widgets/category_builder.dart';
+import 'package:presensi_himaster/widgets/stats_jadwal_widget.dart';
 
 class MainMenu extends StatelessWidget {
   MainMenu({Key? key}) : super(key: key);
@@ -155,7 +156,9 @@ class MainMenu extends StatelessWidget {
                       height: 0.065 * getHeight(context),
                       child: OutlinedButton(
                           style: roundedOutButton(Colors.transparent, blueCr),
-                          onPressed: () {},
+                          onPressed: () {
+                            mainController.pageGo(context, Calendar());
+                          },
                           child: Text(
                             'Lihat Semua Jadwal',
                             style: textStyle(14, blueCr),

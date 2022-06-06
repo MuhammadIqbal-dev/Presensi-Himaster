@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:presensi_himaster/widget/custom_alert_dialog.dart';
+import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 
 class MainController extends GetxController {
   CustomAlertDialog customAlertDialog = CustomAlertDialog();
@@ -17,6 +17,7 @@ class MainController extends GetxController {
   RxInt enabledProfile = 0.obs;
   RxList droppedDown = [].obs;
 
+  // DATE
   final Duration _duration = const Duration(seconds: 10);
   void updateDate() {
     Timer.periodic(_duration, (tes) {
@@ -24,13 +25,13 @@ class MainController extends GetxController {
     });
   }
 
-  // Widget getDialog(title, desc, func){
-  //   return customAlertDialog()
-  // }
+
   String getDate() {
     return DateFormat('d MMMM y').format(now.value);
   }
 
+
+  // PAGE TRANSITION
   void pageTransition(BuildContext context, Widget page) {
     Navigator.pushReplacement(
         context,
@@ -45,7 +46,6 @@ class MainController extends GetxController {
             },
             pageBuilder: (context, animation, secondaryAnimation) => page));
   }
-
   void pageGo(BuildContext context, Widget page) {
     Navigator.push(
         context,

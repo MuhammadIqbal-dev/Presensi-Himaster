@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/main_controller.dart';
-import 'package:presensi_himaster/screen/profile.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
+import 'package:presensi_himaster/screens/profile.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class StatsJadwalWidget extends StatelessWidget {

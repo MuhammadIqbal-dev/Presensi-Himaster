@@ -11,12 +11,11 @@ class DivisiCard extends StatelessWidget {
         width: 0.22 * getWidth(context),
         decoration: roundedBox(lightGreenCr, 6),
         padding: const EdgeInsets.all(8.0),
-        child: Expanded(
-            child: Text(
+        child: Text(
           name,
           style: semiBoldStyle(8, greenCr),
           textAlign: TextAlign.center,
-        )),
+        ),
       );
   }
 }

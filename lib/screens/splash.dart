@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/main_controller.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'dart:async';
 
-import 'package:presensi_himaster/screen/onboarding.dart';
+import 'package:presensi_himaster/screens/onboarding.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class Splash extends StatefulWidget {
@@ -47,12 +47,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: const [0.1, 0.5, 0.9],
-                colors: [startCr, midCr, darkBlueCr])),
+        decoration: gradBox(),
         child: const Center(child: Image(image: AssetImage('assets/imgs/logo.png'))),
       ),
     );

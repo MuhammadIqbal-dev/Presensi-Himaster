@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:presensi_himaster/screen/login.dart';
+import 'package:presensi_himaster/screens/login.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/on_board_widget.dart';
+import 'package:presensi_himaster/widgets/on_board_widget.dart';
 
-import '../model/slide_model.dart';
+import '../models/slide_model.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);

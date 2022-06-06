@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/status_card.dart';
+import 'package:presensi_himaster/widgets/status_card.dart';
 
 class DetailInfo extends StatelessWidget {
   const DetailInfo({Key? key, required this.enable}) : super(key: key);

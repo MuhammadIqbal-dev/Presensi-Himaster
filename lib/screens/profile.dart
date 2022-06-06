@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presensi_himaster/controller/main_controller.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/history_card_builder.dart';
+import 'package:presensi_himaster/widgets/history_card_builder.dart';
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widget/detail_absen_button_card.dart';
-import 'package:presensi_himaster/widget/detail_absen_desc.dart';
+import 'package:presensi_himaster/widgets/detail_absen_button_card.dart';
+import 'package:presensi_himaster/widgets/detail_absen_desc.dart';
 
 class DetailAbsen extends StatelessWidget {
   const DetailAbsen({Key? key, required this.id}) : super(key: key);

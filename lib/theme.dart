@@ -50,11 +50,20 @@ ButtonStyle roundedOutButton(Color colors, Color outColors) {
       side: BorderSide(color: outColors, width: 2));
 }
 
-
 BoxDecoration roundedBox(Color colors, double radius) {
   return BoxDecoration(
     color: colors,
     borderRadius: BorderRadius.circular(radius),
+  );
+}
+
+BoxDecoration gradBox() {
+  return BoxDecoration(
+    gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        stops: const [0, 0.5, 0.8],
+        colors: [startCr, midCr, darkBlueCr]),
   );
 }
 
@@ -70,10 +79,12 @@ BoxDecoration roundedShadowBox(Color colors, double radius) {
         )
       ]);
 }
+
 BoxDecoration roundedTopShadowBox(Color colors, double radius) {
   return BoxDecoration(
       color: colors,
-      borderRadius: BorderRadius.only(topLeft: Radius.circular(radius), topRight: Radius.circular(radius)),
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius), topRight: Radius.circular(radius)),
       boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.22),
@@ -92,6 +103,7 @@ BoxDecoration roundedGradBox(double radius) {
           stops: const [0.1, 0.5, 0.9],
           colors: [startCr, midCr, darkBlueCr]));
 }
+
 OutlineInputBorder blueBorder = OutlineInputBorder(
     borderSide: BorderSide(color: blueCr),
     borderRadius: BorderRadius.circular(8.0));
@@ -99,7 +111,6 @@ OutlineInputBorder blueBorder = OutlineInputBorder(
 OutlineInputBorder focusedBorder = OutlineInputBorder(
     borderSide: BorderSide(color: blueCr),
     borderRadius: BorderRadius.circular(8.0));
-
 
 double getWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;

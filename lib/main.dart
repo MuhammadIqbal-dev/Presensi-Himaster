@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi_himaster/screen/splash.dart';
+import 'package:presensi_himaster/screens/splash.dart';
 
 void main() {
   runApp(const MyApp());
