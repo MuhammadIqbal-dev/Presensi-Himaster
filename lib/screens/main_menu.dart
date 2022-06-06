@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:presensi_himaster/controllers/date_controller.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
+import 'package:presensi_himaster/models/user_model.dart';
 import 'package:presensi_himaster/screens/calendar.dart';
 import 'package:presensi_himaster/screens/profile.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widgets/absen_card_builder.dart';
 import 'package:presensi_himaster/widgets/category_builder.dart';
+import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 import 'package:presensi_himaster/widgets/stats_jadwal_widget.dart';
 
 class MainMenu extends StatelessWidget {
   MainMenu({Key? key}) : super(key: key);
 
   final mainController = Get.find<MainController>();
+  final dateController = Get.put(DateController());
+  final CustomAlertDialog customAlertDialog = CustomAlertDialog();
+
 
   @override
   Widget build(BuildContext context) {
+  User? user = mainController.userData.value.user;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -47,7 +54,7 @@ class MainMenu extends StatelessWidget {
                                   style: textStyle(12, grayCr),
                                 ),
                                 Text(
-                                  'Richard felyn',
+                                  '${user?.name}',
                                   style: semiBoldStyle(14, black),
                                 )
                               ],
@@ -96,9 +103,9 @@ class MainMenu extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 Obx(() {
-                                  mainController.updateDate();
+                                  dateController.updateDate();
                                   return Text(
-                                    mainController.getDate(),
+                                    dateController.getDate(),
                                     style: textStyle(12, grayCr),
                                   );
                                 }),
@@ -112,7 +119,7 @@ class MainMenu extends StatelessWidget {
                           height: double.infinity,
                           child: OutlinedButton(
                             onPressed: () {
-                              mainController.customAlertDialog.showAlertDialog(
+                              customAlertDialog.showAlertDialog(
                                   context,
                                   'Masukkan Kode Kegiatan',
                                   'KODE KEGIATAN');

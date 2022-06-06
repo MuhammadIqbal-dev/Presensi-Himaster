@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-Data userModelFromJson(String str) => Data.fromJson(json.decode(str));
+// Default type data is UserModel, but because 
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
 String userModelToJson(Data data) => json.encode(data.toJson());
 

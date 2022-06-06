@@ -3,34 +3,43 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:presensi_himaster/models/user_model.dart';
+import 'package:presensi_himaster/services/presensi_api.dart';
 import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 
 class MainController extends GetxController {
-  CustomAlertDialog customAlertDialog = CustomAlertDialog();
 
-  Rx<DateTime> now = DateTime.now().obs;
-  final List itemsProfile = [
-    'Semua Kegiatan',
-    'Kegiatan Dihadiri',
-    'Kegiatan Tidak Dihadiri'
-  ].obs;
+
   RxInt enabledProfile = 0.obs;
   RxList droppedDown = [].obs;
+  RxBool isLogin = false.obs;
+  Rx<Data> userData = Data().obs;
 
-  // DATE
-  final Duration _duration = const Duration(seconds: 10);
-  void updateDate() {
-    Timer.periodic(_duration, (tes) {
-      now.value = DateTime.now();
-    });
+
+  // API
+  loginController(String email, String pass) async{
+    if (email == "" || pass == "") {
+      return;
+    }
+    Data? data = await PresensiApi.loginAccount(email, pass);
+    print('aaa');
+    if (data == null) {
+      isLogin.value = false;
+    }else{
+      userData.value = data;
+      isLogin.value = true;
+    }
+    print(userData.value.accessToken);
+
+
   }
 
-
-  String getDate() {
-    return DateFormat('d MMMM y').format(now.value);
+  Future<bool> logoutController(String token) async{
+    print(token);
+    return await PresensiApi.logoutAccount(token);
   }
-
-
+  
+  
   // PAGE TRANSITION
   void pageTransition(BuildContext context, Widget page) {
     Navigator.pushReplacement(

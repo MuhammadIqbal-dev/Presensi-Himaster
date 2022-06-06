@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
+import 'package:presensi_himaster/screens/login.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widgets/history_card_builder.dart';
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
   final mainController = Get.find<MainController>();
-
+  final List itemsProfile = [
+    'Semua Kegiatan',
+    'Kegiatan Dihadiri',
+    'Kegiatan Tidak Dihadiri'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,14 +56,26 @@ class Profile extends StatelessWidget {
                 const Spacer(
                   flex: 5,
                 ),
-                Column(
-                  children: [
-                    Image.asset('assets/imgs/log_out.png'),
-                    Text(
-                      'Log Out',
-                      style: textStyle(10, redCr),
-                    )
-                  ],
+                InkWell(
+                  onTap: () async {
+                    var resp = await mainController.logoutController(mainController.userData.value.accessToken!);
+                    print(resp);
+                    if (resp) {
+                      print('berhasil');
+                      mainController.isLogin.value = false;
+                      mainController.pageTransition(context, Login());
+                      
+                    }
+                  },
+                  child: Column(
+                    children: [
+                      Image.asset('assets/imgs/log_out.png'),
+                      Text(
+                        'Log Out',
+                        style: textStyle(10, redCr),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -73,7 +90,7 @@ class Profile extends StatelessWidget {
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    itemCount: mainController.itemsProfile.length,
+                    itemCount: itemsProfile.length,
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
@@ -94,7 +111,7 @@ class Profile extends StatelessWidget {
                                         ? roundedBox(blueCr, 6)
                                         : roundedBox(Colors.transparent, 6),
                                 child: Text(
-                                  mainController.itemsProfile[index],
+                                  itemsProfile[index],
                                   style:
                                       mainController.enabledProfile.value ==
                                               index

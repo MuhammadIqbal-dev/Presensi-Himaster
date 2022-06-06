@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/theme.dart';
+import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 
 class AbsenButtonCard extends StatelessWidget {
   AbsenButtonCard({Key? key}) : super(key: key);
   final MainController mainController = Get.find<MainController>();
+  final CustomAlertDialog customAlertDialog = CustomAlertDialog();
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class AbsenButtonCard extends StatelessWidget {
                 width: 0.4 * getWidth(context),
                 child: OutlinedButton(
                     onPressed: () {
-                      mainController.customAlertDialog.showAlertDialog(
+                      customAlertDialog.showAlertDialog(
                           context, 'Masukkan Kode Presensi', 'KODE PRESENSI');
                     },
                     style: roundedOutButton(white, blueCr),
