@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:presensi_himaster/models/user_model.dart';
+import 'package:presensi_himaster/models/user_model.dart' as um;
+import 'package:presensi_himaster/models/list_absen.dart' as la;
 import 'package:presensi_himaster/services/presensi_api.dart';
 import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 
@@ -13,7 +14,11 @@ class MainController extends GetxController {
   RxInt enabledProfile = 0.obs;
   RxList droppedDown = [].obs;
   RxBool isLogin = false.obs;
-  Rx<Data> userData = Data().obs;
+  RxBool isLoading = false.obs;
+  Rx<um.Data> userData = um.Data().obs;
+  Rx<la.Data> userAbsen = la.Data().obs;
+
+  
 
 
   // API
@@ -21,7 +26,7 @@ class MainController extends GetxController {
     if (email == "" || pass == "") {
       return;
     }
-    Data? data = await PresensiApi.loginAccount(email, pass);
+    um.Data? data = await PresensiApi.loginAccount(email, pass);
     print('aaa');
     if (data == null) {
       isLogin.value = false;
@@ -37,6 +42,18 @@ class MainController extends GetxController {
   Future<bool> logoutController(String token) async{
     print(token);
     return await PresensiApi.logoutAccount(token);
+  }
+
+  fetchDataAbsen(String token) async{
+    isLoading.value = true;
+    la.Data? data = await PresensiApi.fetchAbsen(token);
+    if (data == null){
+      print('data absen null');
+    }
+    else{
+      userAbsen.value = data;
+      isLoading.value = false;
+    }
   }
   
   

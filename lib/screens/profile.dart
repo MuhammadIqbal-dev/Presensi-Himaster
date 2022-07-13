@@ -116,7 +116,7 @@ class Profile extends StatelessWidget {
                                       mainController.enabledProfile.value ==
                                               index
                                           ? semiBoldStyle(12, white)
-                                          : textStyle(12, grayCr),
+                                          : semiBoldStyle(12, grayCr),
                                 ),
                               ),
                             ),
