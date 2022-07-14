@@ -32,6 +32,7 @@ class MainController extends GetxController {
       isLogin.value = false;
     }else{
       userData.value = data;
+      await fetchDataAbsen(userData.value.accessToken!);
       isLogin.value = true;
     }
     print(userData.value.accessToken);
@@ -44,7 +45,7 @@ class MainController extends GetxController {
     return await PresensiApi.logoutAccount(token);
   }
 
-  fetchDataAbsen(String token) async{
+  Future fetchDataAbsen(String token) async{
     isLoading.value = true;
     la.Data? data = await PresensiApi.fetchAbsen(token);
     if (data == null){

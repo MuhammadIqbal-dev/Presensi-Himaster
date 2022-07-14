@@ -36,6 +36,7 @@ class Data {
   });
 
   User? user;
+  // asdasdasdasdasdsd
   List<History>? history;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -48,6 +49,17 @@ class Data {
         "user": user!.toJson(),
         "history": List<dynamic>.from(history!.map((x) => x.toJson())),
       };
+  // History? history;
+
+  //   factory Data.fromJson(Map<String, dynamic> json) => Data(
+  //       user: User.fromJson(json["user"]),
+  //       history: History.fromJson(json["history"]),
+  //   );
+
+  //   Map<String, dynamic> toJson() => {
+  //       "user": user!.toJson(),
+  //       "history": history!.toJson(),
+  //   };
 }
 
 class History {
@@ -75,9 +87,9 @@ class History {
   int eventId;
   DateTime createdAt;
   DateTime updatedAt;
-  String place;
-  String link;
-  String desc;
+  String? place;
+  String? link;
+  String? desc;
 
   factory History.fromJson(Map<String, dynamic> json) => History(
         id: json["id"],
@@ -89,9 +101,9 @@ class History {
         eventId: json["event_id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        place: json["place"] == null ? null : json["place"],
-        link: json["link"] == null ? null : json["link"],
-        desc: json["desc"] == null ? null : json["desc"],
+        place: json["place"] ?? "-",
+        link: json["link"] ?? "-",
+        desc: json["desc"] ?? "-",
     );
 
   Map<String, dynamic> toJson() => {
@@ -104,9 +116,9 @@ class History {
         "event_id": eventId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-        "place": place == null ? null : place,
-        "link": link == null ? null : link,
-        "desc": desc == null ? null : desc,
+        "place": place ?? "-",
+        "link": link ?? "-",
+        "desc": desc ?? "-",
     };
 }
 
