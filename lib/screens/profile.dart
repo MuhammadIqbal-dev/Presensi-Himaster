@@ -44,11 +44,11 @@ class Profile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Richard Felyn',
+                      mainController.userAbsen.value.user!.name,
                       style: semiBoldStyle(14, black),
                     ),
                     Text(
-                      'H1000000001',
+                      mainController.userAbsen.value.user!.email,
                       style: textStyle(12, grayCr),
                     )
                   ],

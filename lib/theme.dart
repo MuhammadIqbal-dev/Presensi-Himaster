@@ -56,6 +56,13 @@ BoxDecoration roundedBox(Color colors, double radius) {
     borderRadius: BorderRadius.circular(radius),
   );
 }
+BoxDecoration roundedOutBox(Color colors, Color outColors, double radius) {
+  return BoxDecoration(
+    border: Border.all(width: 2, color: outColors),
+    color: colors,
+    borderRadius: BorderRadius.circular(radius),
+  );
+}
 
 BoxDecoration gradBox() {
   return BoxDecoration(

@@ -7,6 +7,7 @@ import 'package:presensi_himaster/screens/calendar.dart';
 import 'package:presensi_himaster/screens/profile.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widgets/absen_card_builder.dart';
+import 'package:presensi_himaster/widgets/banner_swipe.dart';
 import 'package:presensi_himaster/widgets/category_builder.dart';
 import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 import 'package:presensi_himaster/widgets/stats_jadwal_widget.dart';
@@ -18,19 +19,22 @@ class MainMenu extends StatelessWidget {
   final dateController = Get.put(DateController());
   final CustomAlertDialog customAlertDialog = CustomAlertDialog();
 
-
   @override
   Widget build(BuildContext context) {
-  User? user = mainController.userData.value.user;
+    User? user = mainController.userData.value.user;
+
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: false,
           backgroundColor: white,
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: RefreshIndicator(
               color: blueCr,
-              onRefresh: () => mainController.reFetch(),
+              onRefresh: () {
+                mainController.setup();
+                return mainController.reFetch();
+              },
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -76,8 +80,9 @@ class MainMenu extends StatelessWidget {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 5.0),
-                      height: 140,
-                      decoration: roundedShadowBox(grayCr, 12),
+                      height: 0.21 *getHeight(context),
+                      child: BannerSwap(),
+                      
                     ),
                     // const Spacer(),
                     SizedBox(
@@ -128,9 +133,8 @@ class MainMenu extends StatelessWidget {
                                     'Masukkan Kode Kegiatan',
                                     'KODE KEGIATAN',
                                     'kegiatan',
-                                     '',
-                                     mainController.userData.value.accessToken!
-                                    );
+                                    '',
+                                    mainController.userData.value.accessToken!);
                               },
                               child: const Text('+ Kegiatan'),
                               style: roundedButton(darkGreenCr),
@@ -149,7 +153,7 @@ class MainMenu extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: CategoryBuilder()),
                     ),
-              
+
                     SizedBox(
                       height:
                           0.02 * getHeight(context) + 0.005 * getWidth(context),

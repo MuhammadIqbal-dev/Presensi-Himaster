@@ -102,7 +102,7 @@ class CustomAlertResponses {
         }
         return alertSalah;
       },
-    ).then((value) => _mainController.statusChange.value =
+    ).then((value) => _mainController.statusMap[dataCode.id] =
         _mainController.getStatus(dataCode));
 
     // show the dialog

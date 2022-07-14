@@ -18,6 +18,8 @@ class DetailInfo extends StatelessWidget {
     String start = DateFormat.Hm().format(data.start);
     String end = DateFormat.Hm().format(data.end);
     String formattedTime = "$start - $end Wib";
+    
+
     return SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
       child: ConstrainedBox(
@@ -47,7 +49,7 @@ class DetailInfo extends StatelessWidget {
                       style: textStyle(10, lightGrayCr),
                     ),
                     Obx((() {
-                      return StatusCard(status: _mainController.statusChange.value);
+                      return StatusCard(status: _mainController.statusMap[data.id]);
                     }))
                     
                   ],

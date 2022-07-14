@@ -16,7 +16,7 @@ class AbsenButtonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx((() {
 
-      if (mainController.statusChange.value == 1) {
+      if (mainController.statusMap[dataCode.id] == 1) {
         return Column(
           children: [
             const Spacer(),
@@ -42,7 +42,7 @@ class AbsenButtonCard extends StatelessWidget {
           ],
         );
       }
-      else if (mainController.statusChange.value == 2) {
+      else if (mainController.statusMap[dataCode.id] == 2) {
         return Column(
           children: [
             const Spacer(),
