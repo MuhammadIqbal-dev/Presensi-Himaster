@@ -10,7 +10,7 @@ class AbsenButtonCard extends StatelessWidget {
       : super(key: key);
   final MainController mainController = Get.find<MainController>();
   final CustomAlertDialog customAlertDialog = CustomAlertDialog();
-  Code dataCode;
+  final Code dataCode;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class AbsenButtonCard extends StatelessWidget {
               'Absen Disini',
               style: semiBoldStyle(14, grayCr),
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -127,7 +127,7 @@ class AbsenButtonCard extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       );

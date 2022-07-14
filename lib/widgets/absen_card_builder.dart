@@ -9,14 +9,9 @@ import 'package:presensi_himaster/widgets/status_card.dart';
 
 class AbsenCardBuilder extends StatelessWidget {
   AbsenCardBuilder({Key? key}) : super(key: key);
-  final List items = [
-    'It club ke 1',
-    'It club ke 2',
-    'It club ke 3',
-    'It club ke 4',
-  ];
 
-  MainController mainController = Get.find<MainController>();
+
+  final MainController mainController = Get.find<MainController>();
 
   @override
   Widget build(BuildContext context) {
@@ -167,20 +162,18 @@ class AbsenCardBuilder extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/imgs/no-resultss.png',
-                      height: 200,
-                    ),
-                    Text(
-                      'Tidak ada Absen Aktif',
-                      style: semiBoldStyle(12, grayCr),
-                    )
-                  ],
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/imgs/no-resultss.png',
+                    height: 200,
+                  ),
+                  Text(
+                    'Tidak ada Absen Aktif',
+                    style: semiBoldStyle(12, grayCr),
+                  )
+                ],
               ),
             ],
           );

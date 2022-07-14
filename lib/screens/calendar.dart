@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -29,7 +27,7 @@ class Calendar extends StatelessWidget {
               firstDay: DateTime.utc(2019, 10, 16),
               lastDay: DateTime.utc(2030, 12, 30),
               startingDayOfWeek: StartingDayOfWeek.monday,
-              weekendDays: [DateTime.sunday, 6],
+              weekendDays: const [DateTime.sunday, 6],
               daysOfWeekHeight: 60,
               rowHeight: 60,
               headerStyle: HeaderStyle(

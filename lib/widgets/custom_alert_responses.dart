@@ -5,7 +5,7 @@ import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class CustomAlertResponses {
-  MainController _mainController = Get.find<MainController>();
+  final MainController _mainController = Get.find<MainController>();
 
   showAlertDialog(BuildContext context, bool isValidate, Code dataCode) {
     Widget okeButton(String text) {

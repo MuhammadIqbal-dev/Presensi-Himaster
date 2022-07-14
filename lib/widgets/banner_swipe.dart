@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:presensi_himaster/screens/login.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widgets/on_board_widget.dart';
 
 import '../models/slide_model.dart';
 
@@ -34,7 +32,7 @@ class _BannerSwapState extends State<BannerSwap> {
 
     _controller.animateToPage(
       currentIndex,
-      duration: Duration(milliseconds: 350),
+      duration: const Duration(milliseconds: 350),
       curve: Curves.easeIn,
     );
   });
@@ -61,7 +59,7 @@ class _BannerSwapState extends State<BannerSwap> {
             },
             itemCount: slides.length,
             itemBuilder: (context, index) {
-              return Image(
+              return const Image(
                 image: AssetImage('assets/imgs/first_img.png'),
               );
             }),

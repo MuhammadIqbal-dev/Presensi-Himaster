@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/theme.dart';
-import 'package:presensi_himaster/widgets/divisi_card.dart';
 import 'package:presensi_himaster/widgets/status_card.dart';
 
 class HistoryCard extends StatelessWidget {
@@ -12,7 +11,7 @@ class HistoryCard extends StatelessWidget {
       {Key? key, this.status, this.idx,  this.keys, required this.data, this.values})
       : super(key: key);
   final mainController = Get.find<MainController>();
-  Code data;
+  final Code data;
   final bool? status;
   final int? idx;
   final int? keys;

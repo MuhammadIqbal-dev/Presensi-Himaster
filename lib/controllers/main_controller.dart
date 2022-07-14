@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:presensi_himaster/models/user_model.dart' as um;
 import 'package:presensi_himaster/models/list_absen.dart' as la;
 import 'package:presensi_himaster/services/presensi_api.dart';
-import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 
 class MainController extends GetxController {
   RxInt enabledProfile = 0.obs;
@@ -54,15 +52,12 @@ class MainController extends GetxController {
   }
 
   setup() async{
-    print('setup dilakukan');
     int statusAbsen = 2;
     for (la.Event dataAbsen in userAbsen.value.user!.event) {
       statusAbsen = 2;
 
       for (la.Code dataAbsenCode in dataAbsen.code) {
         for (la.History data in userAbsen.value.history!) {
-          print('asd');
-          print('data id ${dataAbsenCode.id}');
 
           if (dataAbsenCode.id == data.codeId) {
             statusAbsen = 1;
@@ -83,7 +78,6 @@ class MainController extends GetxController {
         }
         statusMap[dataAbsenCode.id] = statusAbsen;
       }
-      print(statusMap);
     }
     return statusAbsen;
   }

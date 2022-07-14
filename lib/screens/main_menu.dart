@@ -10,7 +10,6 @@ import 'package:presensi_himaster/widgets/absen_card_builder.dart';
 import 'package:presensi_himaster/widgets/banner_swipe.dart';
 import 'package:presensi_himaster/widgets/category_builder.dart';
 import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
-import 'package:presensi_himaster/widgets/stats_jadwal_widget.dart';
 
 class MainMenu extends StatelessWidget {
   MainMenu({Key? key}) : super(key: key);
@@ -34,9 +33,10 @@ class MainMenu extends StatelessWidget {
               onRefresh: () async {
                 await mainController.reFetch();
                 return mainController.setup();
-                ;
+                
               },
               child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     // const Spacer(),
@@ -82,7 +82,7 @@ class MainMenu extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(top: 5.0),
                       height: 0.21 * getHeight(context),
-                      child: BannerSwap(),
+                      child: const BannerSwap(),
                     ),
                     // const Spacer(),
                     SizedBox(
@@ -176,7 +176,7 @@ class MainMenu extends StatelessWidget {
                         child: OutlinedButton(
                             style: roundedOutButton(Colors.transparent, blueCr),
                             onPressed: () {
-                              mainController.pageGo(context, Calendar());
+                              mainController.pageGo(context, const Calendar());
                             },
                             child: Text(
                               'Lihat Semua Jadwal',

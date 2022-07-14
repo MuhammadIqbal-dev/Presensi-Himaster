@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:presensi_himaster/controllers/main_controller.dart';
-import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class AlertResponses {
-  MainController _mainController = Get.find<MainController>();
 
   showAlertDialog(BuildContext context, bool isValidate, String user) async {
     Widget okeButton(String text) {
@@ -31,7 +27,7 @@ class AlertResponses {
       )),
       content: Container(
         width: 0.30 * getWidth(context),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Text(
           'Email Atau Password kamu salah, cek lagi ya!',
           textAlign: TextAlign.center,
@@ -58,7 +54,7 @@ class AlertResponses {
       )),
       content: Container(
         width: 0.30 * getWidth(context),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Text(
           'Selamat datang \n$user!',
           textAlign: TextAlign.center,

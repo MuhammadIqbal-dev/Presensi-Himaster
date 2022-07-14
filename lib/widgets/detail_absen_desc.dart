@@ -11,7 +11,7 @@ class DetailInfo extends StatelessWidget {
       : super(key: key);
   final Code data;
 
-  MainController _mainController = Get.find<MainController>();
+  final MainController _mainController = Get.find<MainController>();
   @override
   Widget build(BuildContext context) {
     String date = DateFormat('d MMM y').format(data.start);

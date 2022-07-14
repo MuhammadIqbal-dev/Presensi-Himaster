@@ -5,7 +5,6 @@ import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widgets/history_card.dart';
-import 'package:presensi_himaster/widgets/status_card.dart';
 
 class HistoryCardBuilder extends StatelessWidget {
   final mainController = Get.find<MainController>();
@@ -34,9 +33,7 @@ class HistoryCardBuilder extends StatelessWidget {
         break;
       }
     }
-    print(keys);
-    print(values);
-    print(maps.length);
+  
     if (isThereData) {
       return ListView.builder(
           shrinkWrap: true,
@@ -73,20 +70,18 @@ class HistoryCardBuilder extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.asset(
-                  'assets/imgs/no-resultss.png',
-                  height: 200,
-                ),
-                Text(
-                  'Tidak ada History Absen',
-                  style: semiBoldStyle(12, grayCr),
-                )
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image.asset(
+                'assets/imgs/no-resultss.png',
+                height: 200,
+              ),
+              Text(
+                'Tidak ada History Absen',
+                style: semiBoldStyle(12, grayCr),
+              )
+            ],
           ),
         ],
       );

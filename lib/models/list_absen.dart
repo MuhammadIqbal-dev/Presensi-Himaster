@@ -2,7 +2,6 @@
 //
 //     final listAbsensi = listAbsensiFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ListAbsensi listAbsensiFromJson(String str) =>
