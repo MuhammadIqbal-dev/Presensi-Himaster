@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widgets/status_card.dart';
 
 class DetailInfo extends StatelessWidget {
-  const DetailInfo({Key? key, required this.enable, required this.data})
+  DetailInfo({Key? key,  required this.data})
       : super(key: key);
-  final int enable;
-  final History data;
+  final Code data;
+
+  MainController _mainController = Get.find<MainController>();
   @override
   Widget build(BuildContext context) {
     String date = DateFormat('d MMM y').format(data.start);
@@ -43,7 +46,10 @@ class DetailInfo extends StatelessWidget {
                       'Status Kehadiran:',
                       style: textStyle(10, lightGrayCr),
                     ),
-                    StatusCard(status: enable)
+                    Obx((() {
+                      return StatusCard(status: _mainController.statusChange.value);
+                    }))
+                    
                   ],
                 )
               ],

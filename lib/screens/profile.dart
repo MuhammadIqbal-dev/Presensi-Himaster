@@ -59,9 +59,7 @@ class Profile extends StatelessWidget {
                 InkWell(
                   onTap: () async {
                     var resp = await mainController.logoutController(mainController.userData.value.accessToken!);
-                    print(resp);
                     if (resp) {
-                      print('berhasil');
                       mainController.isLogin.value = false;
                       mainController.pageTransition(context, Login());
                       

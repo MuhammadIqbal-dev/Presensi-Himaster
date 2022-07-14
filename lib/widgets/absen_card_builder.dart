@@ -21,138 +21,132 @@ class AbsenCardBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Event> dataAbsen = mainController.userAbsen.value.user!.event;
-    List<History> dataHistory = mainController.userAbsen.value.history!;
-
-    return ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: dataAbsen.length,
-        itemBuilder: (context, index) {
-          var dataAbsenCode = dataAbsen[index].code;
-          return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: dataAbsenCode.length,
-              itemBuilder: (context, index) {
-                String start = DateFormat.Hm().format(dataAbsenCode[index].start);
-                String end = DateFormat.Hm().format(dataAbsenCode[index].end);
-                String formattedTime = "$start - $end Wib";
-                int statusAbsen = getStatus(dataHistory, dataAbsenCode[index]);
-                return Container(
-                  width: 192,
-                  decoration: roundedShadowBox(white, 12),
-                  padding: const EdgeInsets.all(16.0),
-                  margin: const EdgeInsets.only(
-                      right: 4.0, left: 4.0, top: 8.0, bottom: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      StatusCard(
-                        status: statusAbsen,
-                      ),
-                      const Spacer(
-                        flex: 2,
-                      ),
-                      // TITLE
-                      Row(
+    return Obx(
+      () {
+        List<Event> dataAbsen = mainController.userAbsen.value.user!.event;
+        List<History> dataHistory = mainController.userAbsen.value.history!;
+        return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: dataAbsen.length,
+            itemBuilder: (context, index) {
+              var dataAbsenCode = dataAbsen[index].code;
+              return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: dataAbsenCode.length,
+                  itemBuilder: (context, index) {
+                    String start =
+                        DateFormat.Hm().format(dataAbsenCode[index].start);
+                    String end =
+                        DateFormat.Hm().format(dataAbsenCode[index].end);
+                    String formattedTime = "$start - $end Wib";
+                    int statusAbsen =
+                        mainController.getStatus(dataAbsenCode[index]);
+                    return Container(
+                      width: 192,
+                      decoration: roundedShadowBox(white, 12),
+                      padding: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.only(
+                          right: 4.0, left: 4.0, top: 8.0, bottom: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset('assets/imgs/title_icon.png'),
-                          const SizedBox(
-                            width: 10,
+                          Obx((() {
+                            mainController.stateChange();
+                            return StatusCard(
+                              status: statusAbsen,
+                            );
+                          })),
+                          const Spacer(
+                            flex: 2,
                           ),
-                          Flexible(
-                            child: Text(
-                              dataAbsenCode[index].title,
-                              overflow: TextOverflow.ellipsis,
-                              style: semiBoldStyle(12, grayCr),
-                            ),
-                          )
-                        ],
-                      ),
-                      const Spacer(
-                        flex: 1,
-                      ),
-                      // WAKTU
-                      Row(
-                        children: [
-                          Image.asset('assets/imgs/time_icon.png'),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            formattedTime,
-                            style: boldStyle(12, grayCr),
-                          )
-                        ],
-                      ),
-                      const Spacer(
-                        flex: 1,
-                      ),
-                      // LOKASI
-                      Row(
-                        children: [
-                          Image.asset('assets/imgs/loc_icon.png'),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Flexible(
-                            child: Text(
-                              dataAbsenCode[index].place!,
-                              overflow: TextOverflow.ellipsis,
-                              style: semiBoldStyle(12, grayCr),
-                            ),
-                          )
-                        ],
-                      ),
-                      const Spacer(
-                        flex: 1,
-                      ),
-                      Expanded(
-                          flex: 4,
-                          child: InkWell(
-                            onTap: () {
-                              mainController.pageGo(
-                                context,
-                                DetailAbsen(
-                                  id: statusAbsen,
-                                  data: dataAbsenCode[index],
+                          // TITLE
+                          Row(
+                            children: [
+                              Image.asset('assets/imgs/title_icon.png'),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  dataAbsenCode[index].title,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: semiBoldStyle(12, grayCr),
                                 ),
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Absen Sekarang',
-                                  style: semiBoldStyle(10, blueCr),
+                              )
+                            ],
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          // WAKTU
+                          Row(
+                            children: [
+                              Image.asset('assets/imgs/time_icon.png'),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                formattedTime,
+                                style: boldStyle(12, grayCr),
+                              )
+                            ],
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          // LOKASI
+                          Row(
+                            children: [
+                              Image.asset('assets/imgs/loc_icon.png'),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  dataAbsenCode[index].place!,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: semiBoldStyle(12, grayCr),
                                 ),
-                                const Spacer(),
-                                Image.asset(
-                                  'assets/imgs/next.png',
-                                  height: 32,
-                                )
-                              ],
-                            ),
-                          ))
-                    ],
-                  ),
-                );
-              });
-        });
-  }
-
-  int getStatus(dataHistory, dataAbsenCode) {
-    int statusAbsen = 2;
-    for (var data in dataHistory) {
-      if (dataAbsenCode.code == data.code) {
-        return statusAbsen = 1;
-      } else if (DateTime.now().isAfter(dataAbsenCode.start) &
-          DateTime.now().isBefore(dataAbsenCode.end)) {
-        return statusAbsen = 3;
-      } else if (DateTime.now().isAfter(dataAbsenCode.end)) {
-        statusAbsen = 2;
-      }
-    }
-    return statusAbsen;
+                              )
+                            ],
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          Expanded(
+                              flex: 4,
+                              child: InkWell(
+                                onTap: () {
+                                  mainController.pageGo(
+                                    context,
+                                    DetailAbsen(
+                                      history: dataHistory,
+                                      dataCode: dataAbsenCode[index],
+                                    ),
+                                  );
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Absen Sekarang',
+                                      style: semiBoldStyle(10, blueCr),
+                                    ),
+                                    const Spacer(),
+                                    Image.asset(
+                                      'assets/imgs/next.png',
+                                      height: 32,
+                                    )
+                                  ],
+                                ),
+                              ))
+                        ],
+                      ),
+                    );
+                  });
+            });
+      },
+    );
   }
 }

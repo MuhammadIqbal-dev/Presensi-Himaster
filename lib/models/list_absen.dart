@@ -2,6 +2,7 @@
 //
 //     final listAbsensi = listAbsensiFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ListAbsensi listAbsensiFromJson(String str) =>
@@ -36,7 +37,6 @@ class Data {
   });
 
   User? user;
-  // asdasdasdasdasdsd
   List<History>? history;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -46,80 +46,57 @@ class Data {
       );
 
   Map<String, dynamic> toJson() => {
-        "user": user!.toJson(),
+        "user": user?.toJson(),
         "history": List<dynamic>.from(history!.map((x) => x.toJson())),
       };
-  // History? history;
-
-  //   factory Data.fromJson(Map<String, dynamic> json) => Data(
-  //       user: User.fromJson(json["user"]),
-  //       history: History.fromJson(json["history"]),
-  //   );
-
-  //   Map<String, dynamic> toJson() => {
-  //       "user": user!.toJson(),
-  //       "history": history!.toJson(),
-  //   };
 }
 
 class History {
   History({
     required this.id,
+    required this.user,
+    required this.time,
+    required this.codeId,
     required this.title,
-    required this.code,
-    required this.start,
-    required this.end,
-    required this.status,
-    required this.eventId,
+    required this.userId,
+    required this.description,
     required this.createdAt,
     required this.updatedAt,
-    required this.place,
-    required this.link,
-    required this.desc,
   });
 
   int id;
+  String user;
+  DateTime time;
+  int codeId;
   String title;
-  String code;
-  DateTime start;
-  DateTime end;
-  int status;
-  int eventId;
+  int userId;
+  String description;
   DateTime createdAt;
   DateTime updatedAt;
-  String? place;
-  String? link;
-  String? desc;
 
   factory History.fromJson(Map<String, dynamic> json) => History(
         id: json["id"],
+        user: json["user"],
+        time: DateTime.parse(json["time"]),
+        codeId: json["code_id"],
         title: json["title"],
-        code: json["code"],
-        start: DateTime.parse(json["start"]),
-        end: DateTime.parse(json["end"]),
-        status: json["status"],
-        eventId: json["event_id"],
+        userId: json["user_id"],
+        description: json["description"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        place: json["place"] ?? "-",
-        link: json["link"] ?? "-",
-        desc: json["desc"] ?? "-",
-    );
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "user": user,
+        "time": time.toIso8601String(),
+        "code_id": codeId,
         "title": title,
-        "code": code,
-        "start": start.toIso8601String(),
-        "end": end.toIso8601String(),
-        "status": status,
-        "event_id": eventId,
+        "user_id": userId,
+        "description": description,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-        "place": place ?? "-",
-        "link": link ?? "-",
-        "desc": desc ?? "-",
-    };
+      };
 }
 
 class User {
@@ -127,7 +104,7 @@ class User {
     required this.id,
     required this.name,
     required this.email,
-    this.emailVerifiedAt,
+    required this.emailVerifiedAt,
     required this.createdAt,
     required this.updatedAt,
     required this.roleId,
@@ -137,7 +114,7 @@ class User {
   int id;
   String name;
   String email;
-  dynamic emailVerifiedAt;
+  DateTime emailVerifiedAt;
   DateTime createdAt;
   DateTime updatedAt;
   int roleId;
@@ -147,12 +124,10 @@ class User {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        emailVerifiedAt: json["email_verified_at"] == null
-            ? ''
-            : DateTime.parse(json["email_verified_at"]),
+        emailVerifiedAt: DateTime.parse(json["email_verified_at"]),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        roleId: json["role_id"] ?? 2,
+        roleId: json["role_id"],
         event: List<Event>.from(json["event"].map((x) => Event.fromJson(x))),
       );
 
@@ -184,20 +159,20 @@ class Event {
   String name;
   int status;
   int structureId;
-  dynamic createdAt;
-  dynamic updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
   Pivot pivot;
-  List<History> code;
+  List<Code> code;
 
   factory Event.fromJson(Map<String, dynamic> json) => Event(
         id: json["id"],
         name: json["name"],
         status: json["status"],
         structureId: json["structure_id"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
         pivot: Pivot.fromJson(json["pivot"]),
-        code: List<History>.from(json["code"].map((x) => History.fromJson(x))),
+        code: List<Code>.from(json["code"].map((x) => Code.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -205,13 +180,72 @@ class Event {
         "name": name,
         "status": status,
         "structure_id": structureId,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
         "pivot": pivot.toJson(),
         "code": List<dynamic>.from(code.map((x) => x.toJson())),
       };
 }
 
+class Code {
+  Code({
+    required this.id,
+    required this.title,
+    required this.code,
+    required this.start,
+    required this.end,
+    required this.status,
+    required this.eventId,
+    required this.createdAt,
+    required this.updatedAt,
+     this.place,
+     this.link,
+     this.desc,
+  });
+
+  int id;
+  String title;
+  String code;
+  DateTime start;
+  DateTime end;
+  int status;
+  int eventId;
+  DateTime createdAt;
+  DateTime updatedAt;
+  String? place;
+  String? link;
+  String? desc;
+
+  factory Code.fromJson(Map<String, dynamic> json) => Code(
+        id: json["id"],
+        title: json["title"],
+        code: json["code"],
+        start: DateTime.parse(json["start"]),
+        end: DateTime.parse(json["end"]),
+        status: json["status"],
+        eventId: json["event_id"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        place: json["place"] ??  '-',
+        link: json["link"] ??  '-',
+        desc: json["desc"] ??  '-',
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "code": code,
+        "start": start.toIso8601String(),
+        "end": end.toIso8601String(),
+        "status": status,
+        "event_id": eventId,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "place": place ??  '-',
+        "link": link ??  '-',
+        "desc": desc ??  '-',
+      };
+}
 
 class Pivot {
   Pivot({

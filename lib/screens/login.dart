@@ -149,7 +149,6 @@ class Login extends StatelessWidget {
                                       _passTextController.text);
                                   await Future.delayed(
                                       const Duration(milliseconds: 500));
-                                  print(mainController.isLogin.value);
                                   if (mainController.isLogin.value) {
                                     mainController.pageTransition(
                                         context, MainMenu());

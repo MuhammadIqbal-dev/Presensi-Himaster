@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:presensi_himaster/models/list_absen.dart';
+import 'package:presensi_himaster/services/presensi_api.dart';
 import 'package:presensi_himaster/theme.dart';
+import 'package:presensi_himaster/widgets/custom_alert_loading.dart';
+import 'package:presensi_himaster/widgets/custom_alert_responses.dart';
 
 class CustomAlertDialog {
   final TextEditingController _textController = TextEditingController();
-  showAlertDialog(BuildContext context, String title, String desc) {
+  bool isValidate = false;
+
+  showAlertDialog(BuildContext context, String title, String desc,
+      String service, var dataCode, String token,) {
     // set up the buttons
     Widget cancelButton = OutlinedButton(
       child: Text(
@@ -23,22 +30,34 @@ class CustomAlertDialog {
       style: roundedButton(blueCr),
       onPressed: () {
         // func;
+        if (service == 'kegiatan') {
+          postKodeKegiatan(context, dataCode);
+        } else {
+          postKodePresensi(context, dataCode, token);
+        }
       },
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title, style: semiBoldStyle(14, black),),
+      title: Text(
+        title,
+        style: semiBoldStyle(14, black),
+      ),
       content: SizedBox(
         height: 0.10 * getHeight(context),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(desc, style: textStyle(10, black),),
-            
+            Text(
+              desc,
+              style: textStyle(10, black),
+            ),
             TextField(
-              decoration: InputDecoration(hintText: 'Input kode unik', hintStyle: textStyle(13, grayCr)),
+              decoration: InputDecoration(
+                  hintText: 'Input kode unik',
+                  hintStyle: textStyle(13, grayCr)),
               controller: _textController,
             ),
           ],
@@ -54,7 +73,6 @@ class CustomAlertDialog {
       ],
       actionsPadding: const EdgeInsets.only(bottom: 16),
       actionsAlignment: MainAxisAlignment.center,
-
     );
     showDialog(
       context: context,
@@ -64,5 +82,33 @@ class CustomAlertDialog {
     );
 
     // show the dialog
+  }
+
+  postKodePresensi(BuildContext context, Code dataCode, String token) async {
+    Navigator.pop(context);
+    CustomAlertLoading().showAlertDialog(context);
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    if (_textController.text == dataCode.code) {
+      isValidate = await PresensiApi.postAbsen(dataCode.code,
+          _textController.text, dataCode.id, 'MOBILE', dataCode.title, token);
+    } else {
+      isValidate = false;
+    }
+    Navigator.pop(context);
+    CustomAlertResponses().showAlertDialog(context, isValidate, dataCode);
+  }
+
+  postKodeKegiatan(BuildContext context, var dataCode) async {
+    Navigator.pop(context);
+    CustomAlertLoading().showAlertDialog(context);
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (_textController.text == dataCode.code) {
+      isValidate = true;
+    } else {
+      isValidate = false;
+    }
+    Navigator.pop(context);
+    CustomAlertResponses().showAlertDialog(context, isValidate, dataCode);
   }
 }

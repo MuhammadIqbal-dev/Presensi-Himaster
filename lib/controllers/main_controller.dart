@@ -17,6 +17,8 @@ class MainController extends GetxController {
   RxBool isLoading = false.obs;
   Rx<um.Data> userData = um.Data().obs;
   Rx<la.Data> userAbsen = la.Data().obs;
+  RxBool stateChange = false.obs;
+  RxInt statusChange = 0.obs;
 
   
 
@@ -27,35 +29,50 @@ class MainController extends GetxController {
       return;
     }
     um.Data? data = await PresensiApi.loginAccount(email, pass);
-    print('aaa');
     if (data == null) {
       isLogin.value = false;
     }else{
       userData.value = data;
-      await fetchDataAbsen(userData.value.accessToken!);
+      await fetchDataAbsen();
       isLogin.value = true;
     }
-    print(userData.value.accessToken);
 
 
   }
 
   Future<bool> logoutController(String token) async{
-    print(token);
     return await PresensiApi.logoutAccount(token);
   }
 
-  Future fetchDataAbsen(String token) async{
-    isLoading.value = true;
-    la.Data? data = await PresensiApi.fetchAbsen(token);
+  Future fetchDataAbsen() async{
+    la.Data? data = await PresensiApi.fetchAbsen(userData.value.accessToken!);
     if (data == null){
-      print('data absen null');
     }
     else{
       userAbsen.value = data;
-      isLoading.value = false;
     }
   }
+
+  reFetch() async{
+    await fetchDataAbsen();
+  }
+
+  int getStatus(la.Code dataAbsenCode) {
+    int statusAbsen = 2;
+    for (la.History data in userAbsen.value.history!) {
+      if (dataAbsenCode.id == data.codeId) {
+        return statusAbsen = 1;
+      }
+    }
+    if (DateTime.now().isAfter(dataAbsenCode.start) &
+        DateTime.now().isBefore(dataAbsenCode.end)) {
+      return statusAbsen = 3;
+    } else if (DateTime.now().isAfter(dataAbsenCode.end)) {
+      statusAbsen = 2;
+    }
+    return statusAbsen;
+  }
+
   
   
   // PAGE TRANSITION
