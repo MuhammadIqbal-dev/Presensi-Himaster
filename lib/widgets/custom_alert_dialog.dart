@@ -31,7 +31,7 @@ class CustomAlertDialog {
       onPressed: () {
         // func;
         if (service == 'kegiatan') {
-          postKodeKegiatan(context, dataCode);
+          postKodeKegiatan(context, dataCode, token);
         } else {
           postKodePresensi(context, dataCode, token);
         }
@@ -99,16 +99,17 @@ class CustomAlertDialog {
     CustomAlertResponses().showAlertDialog(context, isValidate, dataCode);
   }
 
-  postKodeKegiatan(BuildContext context, var dataCode) async {
+  postKodeKegiatan(BuildContext context, var dataCode, String token) async {
+    // Parameter dataCode tidak dipakai
     Navigator.pop(context);
     CustomAlertLoading().showAlertDialog(context);
     await Future.delayed(const Duration(milliseconds: 500));
-    if (_textController.text == dataCode.code) {
-      isValidate = true;
+    if (_textController.text.isNotEmpty) {
+      isValidate = await PresensiApi.postKegiatan(_textController.text, token);
     } else {
       isValidate = false;
     }
     Navigator.pop(context);
-    CustomAlertResponses().showAlertDialog(context, isValidate, dataCode);
+    CustomAlertResponses().showAlertDialogKegiatan(context, isValidate);
   }
 }

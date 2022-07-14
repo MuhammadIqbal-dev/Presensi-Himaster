@@ -9,20 +9,8 @@ import 'package:presensi_himaster/widgets/status_card.dart';
 
 class HistoryCardBuilder extends StatelessWidget {
   final mainController = Get.find<MainController>();
-  final List items = [
-    'It club ke 1',
-    'It club ke 2',
-    'It club ke 3',
-    'It club ke 4',
-    'It club ke 5',
-  ];
-  final List enable = [
-    1,
-    2,
-    2,
-    2,
-    1,
-  ];
+
+
 
   HistoryCardBuilder({Key? key}) : super(key: key);
   bool isThereData = false;
@@ -30,7 +18,6 @@ class HistoryCardBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Event> dataAbsen = mainController.userAbsen.value.user!.event;
-    List<History> dataHistory = mainController.userAbsen.value.history!;
     var maps = {};
     var keys = [];
     var values = [];
@@ -41,8 +28,8 @@ class HistoryCardBuilder extends StatelessWidget {
         values.add(value);
       }
     });
-    for (var element in mainController.userAbsen.value.user!.event) {
-      if (element.code.length >= 1) {
+    for (var element in dataAbsen) {
+      if (element.code.isNotEmpty) {
         isThereData = true;
         break;
       }
@@ -56,17 +43,31 @@ class HistoryCardBuilder extends StatelessWidget {
           itemCount: maps.length,
           itemBuilder: (context, index) {
             mainController.droppedDown.add(false);
-            print('aaa');
-            print(keys[index]);
-            return Obx(
+            late Code code;
+            for (var element in dataAbsen) {
+              for (Code data in element.code) {
+                if (data.id == keys[index]) {
+                  mainController.isThereData.value = true;
+                  code = data;
+                  break;
+                }
+              }
+            }
+            if (mainController.isThereData.value) {
+              return Obx(
               () => HistoryCard(
                 status: mainController.droppedDown[index],
                 idx: index,
-                enable: enable[index],
+                
                 keys: keys[index],
+                data: code,
                 values: values[index],
               ),
             );
+            }else{
+              return Container();
+            }
+            
           });
     } else {
       return Row(

@@ -9,25 +9,23 @@ import 'package:presensi_himaster/widgets/status_card.dart';
 
 class HistoryCard extends StatelessWidget {
   HistoryCard(
-      {Key? key, this.status, this.idx, this.enable, this.keys, this.values})
+      {Key? key, this.status, this.idx,  this.keys, required this.data, this.values})
       : super(key: key);
   final mainController = Get.find<MainController>();
+  Code data;
   final bool? status;
   final int? idx;
-  final int? enable;
   final int? keys;
   final int? values;
-  bool isThereData = false;
   @override
   Widget build(BuildContext context) {
     
-    for (Event element in mainController.userAbsen.value.user!.event) {
-      for (Code data in element.code) {
+
     String date = DateFormat('d MMM y').format(data.start);
         String start = DateFormat.Hm().format(data.start);
         String end = DateFormat.Hm().format(data.end);
         String formattedTime = "$start - $end Wib";
-        if (data.id == keys) {
+
           if (status!) {
             return Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
@@ -300,7 +298,3 @@ class HistoryCard extends StatelessWidget {
           }
         }
       }
-    }
-    return Container();
-  }
-}

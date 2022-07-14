@@ -31,9 +31,10 @@ class MainMenu extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: RefreshIndicator(
               color: blueCr,
-              onRefresh: () {
-                mainController.setup();
-                return mainController.reFetch();
+              onRefresh: () async {
+                await mainController.reFetch();
+                return mainController.setup();
+                ;
               },
               child: SingleChildScrollView(
                 child: Column(
@@ -80,9 +81,8 @@ class MainMenu extends StatelessWidget {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 5.0),
-                      height: 0.21 *getHeight(context),
+                      height: 0.21 * getHeight(context),
                       child: BannerSwap(),
-                      
                     ),
                     // const Spacer(),
                     SizedBox(

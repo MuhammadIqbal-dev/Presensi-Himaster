@@ -18,6 +18,7 @@ class MainController extends GetxController {
   RxBool stateChange = false.obs;
   RxMap statusMap = {}.obs;
   RxBool isThereData = false.obs;
+  
 
   // API
   loginController(String email, String pass) async {
@@ -52,7 +53,7 @@ class MainController extends GetxController {
     await fetchDataAbsen();
   }
 
-  setup() {
+  setup() async{
     print('setup dilakukan');
     int statusAbsen = 2;
     for (la.Event dataAbsen in userAbsen.value.user!.event) {

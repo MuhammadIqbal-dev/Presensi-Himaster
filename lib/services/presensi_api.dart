@@ -84,4 +84,24 @@ class PresensiApi {
       return false;
     }
   }
+  static Future<bool> postKegiatan(String code, String token) async {
+    const String apiUrl = "https://presensi.himaster.id/api/addEvent";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    };
+    var body = jsonEncode({
+      'code': code,
+    });
+    http.Response responses =
+        await client.post(Uri.parse(apiUrl), headers: headers, body: body);
+    
+    if (responses.statusCode == 200){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/screens/main_menu.dart';
 import 'package:presensi_himaster/theme.dart';
+import 'package:presensi_himaster/widgets/alert_dialog_login.dart';
+import 'package:presensi_himaster/widgets/custom_alert_loading.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -144,14 +146,23 @@ class Login extends StatelessWidget {
                                 onPressed: () async {
                                   // _autoValidate = true;
                                   validate.value = true;
+                                  CustomAlertLoading().showAlertDialog(context);
                                   await mainController.loginController(
                                       _emailTextController.text,
                                       _passTextController.text);
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 500));
+                                  Navigator.pop(context);
                                   if (mainController.isLogin.value) {
+                                    await AlertResponses().showAlertDialog(
+                                        context,
+                                        mainController.isLogin.value,
+                                        mainController.userAbsen.value.user!.name);
                                     mainController.pageTransition(
                                         context, MainMenu());
+                                  } else {
+                                    AlertResponses().showAlertDialog(
+                                        context,
+                                        mainController.isLogin.value,
+                                        "");
                                   }
                                 },
                                 child: const Text('Login Sekarang')),

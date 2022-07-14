@@ -53,108 +53,112 @@ class AbsenCardBuilder extends StatelessWidget {
                         String formattedTime = "$start - $end Wib";
                         int statusAbsen =
                             mainController.getStatus(dataAbsenCode[index]);
-
-                        return Container(
-                          width: 192,
-                          decoration: roundedShadowBox(white, 12),
-                          padding: const EdgeInsets.all(16.0),
-                          margin: const EdgeInsets.only(
-                              right: 4.0, left: 4.0, top: 8.0, bottom: 8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Obx((() {
-                                mainController.stateChange();
-                                return StatusCard(
-                                  status: statusAbsen,
-                                );
-                              })),
-                              const Spacer(
-                                flex: 2,
-                              ),
-                              // TITLE
-                              Row(
-                                children: [
-                                  Image.asset('assets/imgs/title_icon.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      dataAbsenCode[index].title,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: semiBoldStyle(12, grayCr),
+                        if (dataAbsenCode[index].status == 1) {
+                          return Container(
+                            width: 192,
+                            decoration: roundedShadowBox(white, 12),
+                            padding: const EdgeInsets.all(16.0),
+                            margin: const EdgeInsets.only(
+                                right: 4.0, left: 4.0, top: 8.0, bottom: 8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx((() {
+                                  mainController.stateChange();
+                                  return StatusCard(
+                                    status: statusAbsen,
+                                  );
+                                })),
+                                const Spacer(
+                                  flex: 2,
+                                ),
+                                // TITLE
+                                Row(
+                                  children: [
+                                    Image.asset('assets/imgs/title_icon.png'),
+                                    const SizedBox(
+                                      width: 10,
                                     ),
-                                  )
-                                ],
-                              ),
-                              const Spacer(
-                                flex: 1,
-                              ),
-                              // WAKTU
-                              Row(
-                                children: [
-                                  Image.asset('assets/imgs/time_icon.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    formattedTime,
-                                    style: boldStyle(12, grayCr),
-                                  )
-                                ],
-                              ),
-                              const Spacer(
-                                flex: 1,
-                              ),
-                              // LOKASI
-                              Row(
-                                children: [
-                                  Image.asset('assets/imgs/loc_icon.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      dataAbsenCode[index].place!,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: semiBoldStyle(12, grayCr),
+                                    Flexible(
+                                      child: Text(
+                                        dataAbsenCode[index].title,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: semiBoldStyle(12, grayCr),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const Spacer(
+                                  flex: 1,
+                                ),
+                                // WAKTU
+                                Row(
+                                  children: [
+                                    Image.asset('assets/imgs/time_icon.png'),
+                                    const SizedBox(
+                                      width: 10,
                                     ),
-                                  )
-                                ],
-                              ),
-                              const Spacer(
-                                flex: 1,
-                              ),
-                              Expanded(
-                                  flex: 4,
-                                  child: InkWell(
-                                    onTap: () {
-                                      mainController.pageGo(
-                                        context,
-                                        DetailAbsen(
-                                          history: dataHistory,
-                                          dataCode: dataAbsenCode[index],
-                                        ),
-                                      );
-                                    },
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'Absen Sekarang',
-                                          style: semiBoldStyle(10, blueCr),
-                                        ),
-                                        const Spacer(),
-                                        Image.asset(
-                                          'assets/imgs/next.png',
-                                          height: 32,
-                                        )
-                                      ],
+                                    Text(
+                                      formattedTime,
+                                      style: boldStyle(12, grayCr),
+                                    )
+                                  ],
+                                ),
+                                const Spacer(
+                                  flex: 1,
+                                ),
+                                // LOKASI
+                                Row(
+                                  children: [
+                                    Image.asset('assets/imgs/loc_icon.png'),
+                                    const SizedBox(
+                                      width: 10,
                                     ),
-                                  ))
-                            ],
-                          ),
-                        );
+                                    Flexible(
+                                      child: Text(
+                                        dataAbsenCode[index].place!,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: semiBoldStyle(12, grayCr),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const Spacer(
+                                  flex: 1,
+                                ),
+                                Expanded(
+                                    flex: 4,
+                                    child: InkWell(
+                                      onTap: () {
+                                        mainController.pageGo(
+                                          context,
+                                          DetailAbsen(
+                                            history: dataHistory,
+                                            dataCode: dataAbsenCode[index],
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'Absen Sekarang',
+                                            style: semiBoldStyle(10, blueCr),
+                                          ),
+                                          const Spacer(),
+                                          Image.asset(
+                                            'assets/imgs/next.png',
+                                            height: 32,
+                                          )
+                                        ],
+                                      ),
+                                    ))
+                              ],
+                            ),
+                          );
+                        }
+                        else{
+                          return Container();
+                        }
                       });
                 }
                 return Container();
