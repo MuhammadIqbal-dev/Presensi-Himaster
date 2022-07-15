@@ -103,7 +103,7 @@ class User {
     required this.id,
     required this.name,
     required this.email,
-    required this.emailVerifiedAt,
+    this.emailVerifiedAt,
     required this.createdAt,
     required this.updatedAt,
     required this.roleId,
@@ -113,7 +113,7 @@ class User {
   int id;
   String name;
   String email;
-  DateTime emailVerifiedAt;
+  DateTime? emailVerifiedAt;
   DateTime createdAt;
   DateTime updatedAt;
   int roleId;
@@ -123,10 +123,10 @@ class User {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        emailVerifiedAt: DateTime.parse(json["email_verified_at"]),
+        emailVerifiedAt: json['emai_verfied_at'] == null ? DateTime.now() :  DateTime.parse(json["email_verified_at"]),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        roleId: json["role_id"],
+        roleId: json["role_id"] ?? -1,
         event: List<Event>.from(json["event"].map((x) => Event.fromJson(x))),
       );
 
@@ -134,7 +134,7 @@ class User {
         "id": id,
         "name": name,
         "email": email,
-        "email_verified_at": emailVerifiedAt.toIso8601String(),
+        "email_verified_at": emailVerifiedAt?.toIso8601String(),
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "role_id": roleId,

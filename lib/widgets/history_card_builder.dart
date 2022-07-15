@@ -9,8 +9,6 @@ import 'package:presensi_himaster/widgets/history_card.dart';
 class HistoryCardBuilder extends StatelessWidget {
   final mainController = Get.find<MainController>();
 
-
-
   HistoryCardBuilder({Key? key}) : super(key: key);
   bool isThereData = false;
 
@@ -33,38 +31,38 @@ class HistoryCardBuilder extends StatelessWidget {
         break;
       }
     }
-  
+
     if (isThereData) {
       return ListView.builder(
           shrinkWrap: true,
           itemCount: maps.length,
           itemBuilder: (context, index) {
+            bool isData = false;
+
             mainController.droppedDown.add(false);
             late Code code;
             for (var element in dataAbsen) {
               for (Code data in element.code) {
                 if (data.id == keys[index]) {
-                  mainController.isThereData.value = true;
+                  isData = true;
                   code = data;
                   break;
                 }
               }
             }
-            if (mainController.isThereData.value) {
+            if (isData) {
               return Obx(
-              () => HistoryCard(
-                status: mainController.droppedDown[index],
-                idx: index,
-                
-                keys: keys[index],
-                data: code,
-                values: values[index],
-              ),
-            );
-            }else{
+                () => HistoryCard(
+                  status: mainController.droppedDown[index],
+                  idx: index,
+                  keys: keys[index],
+                  data: code,
+                  values: values[index],
+                ),
+              );
+            } else {
               return Container();
             }
-            
           });
     } else {
       return Row(

@@ -19,16 +19,16 @@ class AbsenCardBuilder extends StatelessWidget {
       () {
         List<Event> dataAbsen = mainController.userAbsen.value.user!.event;
         List<History> dataHistory = mainController.userAbsen.value.history!;
-        mainController.isThereData.value = false;
+        bool isThereData = false;
         for (var element in dataAbsen) {
           for (var data in element.code) {
             if (data.status == 1 && element.status == 1) {
-              mainController.isThereData.value = true;
+              isThereData = true;
               break;
             }
           }
         }
-        if (mainController.isThereData.value) {
+        if (isThereData) {
           return ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,

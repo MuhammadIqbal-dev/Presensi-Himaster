@@ -16,7 +16,7 @@ class PresensiApi {
     });
     http.Response response =
         await client.post(Uri.parse(apiUrl), headers: headers, body: body);
-
+    print(response.body);
     if (response.statusCode == 200) {
       um.UserModel respData = um.userModelFromJson(response.body);
       respData.data?.accessToken = 'Bearer ' + respData.data!.accessToken!;

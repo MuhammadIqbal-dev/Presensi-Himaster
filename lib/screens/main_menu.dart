@@ -82,6 +82,7 @@ class MainMenu extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(top: 5.0),
                       height: 0.21 * getHeight(context),
+                      decoration: roundedShadowBox(Colors.transparent, 0),
                       child: const BannerSwap(),
                     ),
                     // const Spacer(),
