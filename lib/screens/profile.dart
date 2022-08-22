@@ -58,11 +58,11 @@ class Profile extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () async {
-                    var resp = await mainController.logoutController(mainController.userData.value.accessToken!);
+                    var resp = await mainController.logoutController(
+                        mainController.userData.value.accessToken!);
                     if (resp) {
                       mainController.isLogin.value = false;
-                      mainController.pageTransition(context, Login());
-                      
+                      mainController.pageLogout(context, Login());
                     }
                   },
                   child: Column(
@@ -104,17 +104,15 @@ class Profile extends StatelessWidget {
                                 alignment: Alignment.center,
                                 padding: const EdgeInsets.all(12.0),
                                 decoration:
-                                    mainController.enabledProfile.value ==
-                                            index
+                                    mainController.enabledProfile.value == index
                                         ? roundedBox(blueCr, 6)
                                         : roundedBox(Colors.transparent, 6),
                                 child: Text(
                                   itemsProfile[index],
-                                  style:
-                                      mainController.enabledProfile.value ==
-                                              index
-                                          ? semiBoldStyle(12, white)
-                                          : semiBoldStyle(12, grayCr),
+                                  style: mainController.enabledProfile.value ==
+                                          index
+                                      ? semiBoldStyle(12, white)
+                                      : semiBoldStyle(12, grayCr),
                                 ),
                               ),
                             ),
@@ -127,11 +125,13 @@ class Profile extends StatelessWidget {
                     }),
               ),
             ),
-            const Spacer(flex: 2,),
-            Expanded(
-              flex: 50, 
-              child: HistoryCardBuilder()),
-            const Spacer(flex: 4,),
+            const Spacer(
+              flex: 2,
+            ),
+            Expanded(flex: 50, child: HistoryCardBuilder()),
+            const Spacer(
+              flex: 4,
+            ),
           ],
         ),
       ),

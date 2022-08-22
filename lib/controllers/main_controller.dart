@@ -16,7 +16,6 @@ class MainController extends GetxController {
   RxBool stateChange = false.obs;
   RxMap statusMap = {}.obs;
   RxBool isThereData = false.obs;
-  
 
   // API
   loginController(String email, String pass) async {
@@ -51,14 +50,13 @@ class MainController extends GetxController {
     await fetchDataAbsen();
   }
 
-  setup() async{
+  setup() async {
     int statusAbsen = 2;
     for (la.Event dataAbsen in userAbsen.value.user!.event) {
       statusAbsen = 2;
 
       for (la.Code dataAbsenCode in dataAbsen.code) {
         for (la.History data in userAbsen.value.history!) {
-
           if (dataAbsenCode.id == data.codeId) {
             statusAbsen = 1;
             statusMap[dataAbsenCode.id] = statusAbsen;
@@ -115,6 +113,11 @@ class MainController extends GetxController {
               );
             },
             pageBuilder: (context, animation, secondaryAnimation) => page));
+  }
+
+  void pageLogout(BuildContext context, Widget page) {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: ((context) => page)), (route) => false);
   }
 
   void pageGo(BuildContext context, Widget page) {

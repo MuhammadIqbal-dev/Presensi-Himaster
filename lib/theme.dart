@@ -56,6 +56,7 @@ BoxDecoration roundedBox(Color colors, double radius) {
     borderRadius: BorderRadius.circular(radius),
   );
 }
+
 BoxDecoration roundedOutBox(Color colors, Color outColors, double radius) {
   return BoxDecoration(
     border: Border.all(width: 2, color: outColors),
@@ -125,4 +126,8 @@ double getWidth(BuildContext context) {
 
 double getHeight(BuildContext context) {
   return MediaQuery.of(context).size.height;
+}
+
+double getSafeArea(BuildContext context) {
+  return MediaQuery.of(context).padding.top + 14;
 }

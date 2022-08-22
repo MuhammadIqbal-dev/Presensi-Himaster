@@ -123,7 +123,9 @@ class User {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        emailVerifiedAt: json['emai_verfied_at'] == null ? DateTime.now() :  DateTime.parse(json["email_verified_at"]),
+        emailVerifiedAt: json['emai_verfied_at'] == null
+            ? DateTime.now()
+            : DateTime.parse(json["email_verified_at"]),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         roleId: json["role_id"] ?? -1,
@@ -197,9 +199,9 @@ class Code {
     required this.eventId,
     required this.createdAt,
     required this.updatedAt,
-     this.place,
-     this.link,
-     this.desc,
+    this.place,
+    this.link,
+    this.desc,
   });
 
   int id;
@@ -225,9 +227,9 @@ class Code {
         eventId: json["event_id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        place: json["place"] ??  '-',
-        link: json["link"] ??  '-',
-        desc: json["desc"] ??  '-',
+        place: json["place"] ?? '-',
+        link: json["link"] ?? '-',
+        desc: json["desc"] ?? '-',
       );
 
   Map<String, dynamic> toJson() => {
@@ -240,9 +242,9 @@ class Code {
         "event_id": eventId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-        "place": place ??  '-',
-        "link": link ??  '-',
-        "desc": desc ??  '-',
+        "place": place ?? '-',
+        "link": link ?? '-',
+        "desc": desc ?? '-',
       };
 }
 
@@ -256,8 +258,8 @@ class Pivot {
   int eventId;
 
   factory Pivot.fromJson(Map<String, dynamic> json) => Pivot(
-        userId: json["user_id"],
-        eventId: json["event_id"],
+        userId: int.parse(json["user_id"]),
+        eventId: int.parse(json["event_id"]),
       );
 
   Map<String, dynamic> toJson() => {
