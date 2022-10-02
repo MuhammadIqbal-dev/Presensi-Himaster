@@ -16,7 +16,6 @@ class MainController extends GetxController {
   RxBool stateChange = false.obs;
   RxMap statusMap = {}.obs;
   RxBool isThereData = false.obs;
-  
 
   // API
   loginController(String email, String pass) async {
