@@ -113,7 +113,12 @@ class AbsenButtonCard extends StatelessWidget {
                   width: 0.4 * getWidth(context),
                   child: OutlinedButton(
                       onPressed: () {
-                        mainController.pageGo(context, QrScan());
+                        mainController.pageGo(
+                            context,
+                            QrScan(
+                              dataCode: dataCode,
+                              token: mainController.userData.value.accessToken!,
+                            ));
                       },
                       style: roundedButton(blueCr),
                       child: Row(

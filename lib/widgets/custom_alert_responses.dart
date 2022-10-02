@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
@@ -7,7 +9,7 @@ import 'package:presensi_himaster/theme.dart';
 class CustomAlertResponses {
   final MainController _mainController = Get.find<MainController>();
 
-  showAlertDialog(BuildContext context, bool isValidate, Code dataCode) {
+  Future showAlertDialog(BuildContext context, bool isValidate, Code dataCode) async {
     Widget okeButton(String text) {
       return OutlinedButton(
         child: Text(
@@ -16,6 +18,7 @@ class CustomAlertResponses {
         ),
         style: roundedButton(blueCr),
         onPressed: () {
+          _mainController.isLoadingKode(false);
           Navigator.pop(context);
         },
       );
@@ -33,7 +36,8 @@ class CustomAlertResponses {
         width: 0.30 * getWidth(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               'assets/imgs/failed.png',
@@ -69,7 +73,7 @@ class CustomAlertResponses {
         width: 0.30 * getWidth(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               'assets/imgs/success.png',
@@ -93,7 +97,8 @@ class CustomAlertResponses {
       actionsAlignment: MainAxisAlignment.center,
     );
 
-    showDialog(
+    await showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         if (isValidate) {
@@ -102,11 +107,14 @@ class CustomAlertResponses {
         }
         return alertSalah;
       },
-    ).then((value) => _mainController.statusMap[dataCode.id] =
-        _mainController.getStatus(dataCode));
+    ).then((value) {
+      _mainController.statusMap[dataCode.id] =
+          _mainController.getStatus(dataCode);
+    });
 
     // show the dialog
   }
+
   showAlertDialogKegiatan(BuildContext context, bool isValidate) {
     Widget okeButton(String text) {
       return OutlinedButton(
@@ -133,7 +141,7 @@ class CustomAlertResponses {
         width: 0.30 * getWidth(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               'assets/imgs/failed.png',
@@ -169,7 +177,7 @@ class CustomAlertResponses {
         width: 0.30 * getWidth(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               'assets/imgs/success.png',

@@ -11,6 +11,7 @@ class MainController extends GetxController {
   RxList droppedDown = [].obs;
   RxBool isLogin = false.obs;
   RxBool isLoading = false.obs;
+  RxBool isLoadingKode = false.obs;
   Rx<um.Data> userData = um.Data().obs;
   Rx<la.Data> userAbsen = la.Data().obs;
   RxBool stateChange = false.obs;

@@ -140,7 +140,7 @@ class MainMenu extends StatelessWidget {
                                   '',
                                   mainController.userData.value.accessToken!);
                             },
-                            child: const Text('+ Kegiatan'),
+                            child: Text('+ Kegiatan', style: semiBoldStyle(12, white)),
                             style: roundedButton(darkGreenCr),
                           ),
                         )

@@ -5,11 +5,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
+import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/theme.dart';
+import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrScan extends StatefulWidget {
-  const QrScan({Key? key}) : super(key: key);
+  const QrScan({Key? key, required this.dataCode, required this.token})
+      : super(key: key);
+  final Code dataCode;
+  final String token;
 
   @override
   State<QrScan> createState() => _QrScanState();
@@ -19,6 +26,7 @@ class _QrScanState extends State<QrScan> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  final CustomAlertDialog customAlertDialog = CustomAlertDialog();
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -101,11 +109,19 @@ class _QrScanState extends State<QrScan> {
       this.controller = controller;
     });
     controller.resumeCamera();
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
-    });
+    controller.scannedDataStream.listen(
+      (scanData) {
+        setState(() {
+          result = scanData;
+          customAlertDialog
+              .postKodePresensiQR(
+                  context, widget.dataCode, result!.code!, widget.token)
+              .then((value) {
+            controller.pauseCamera();
+          });
+        });
+      },
+    );
   }
 
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {

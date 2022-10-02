@@ -89,18 +89,20 @@ class DetailInfo extends StatelessWidget {
                 SizedBox(
                   width: 0.03 * getWidth(context),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Title',
-                      style: textStyle(10, lightGrayCr),
-                    ),
-                    Text(
-                      data.title,
-                      style: semiBoldStyle(12, grayCr),
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Title',
+                        style: textStyle(10, lightGrayCr),
+                      ),
+                      Text(
+                        data.title,
+                        style: semiBoldStyle(12, grayCr),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -137,18 +139,20 @@ class DetailInfo extends StatelessWidget {
                 SizedBox(
                   width: 0.03 * getWidth(context),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Tempat',
-                      style: textStyle(10, lightGrayCr),
-                    ),
-                    Text(
-                      data.place!,
-                      style: textStyle(12, grayCr),
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Tempat',
+                        style: textStyle(10, lightGrayCr),
+                      ),
+                      Text(
+                        data.place!,
+                        style: textStyle(12, grayCr),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -161,18 +165,20 @@ class DetailInfo extends StatelessWidget {
                 SizedBox(
                   width: 0.03 * getWidth(context),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Links',
-                      style: textStyle(10, lightGrayCr),
-                    ),
-                    Text(
-                      data.link!,
-                      style: textStyle(12, grayCr),
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Links',
+                        style: textStyle(10, lightGrayCr),
+                      ),
+                      Text(
+                        'asdasdasdasdasdasdasdasdasdasdasdasdsad',
+                        style: textStyle(12, grayCr),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -185,23 +191,22 @@ class DetailInfo extends StatelessWidget {
                 SizedBox(
                   width: 0.03 * getWidth(context),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Description',
-                      style: textStyle(10, lightGrayCr),
-                    ),
-                    SizedBox(
-                      width: 0.8 * getWidth(context),
-                      child: Text(
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Description',
+                        style: textStyle(10, lightGrayCr),
+                      ),
+                      Text(
                         data.desc!,
                         maxLines: 6,
                         textAlign: TextAlign.justify,
                         style: textStyle(12, grayCr),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
             ),

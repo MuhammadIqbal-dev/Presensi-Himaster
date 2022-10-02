@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/models/list_absen.dart';
 import 'package:presensi_himaster/services/presensi_api.dart';
 import 'package:presensi_himaster/theme.dart';
@@ -7,10 +11,18 @@ import 'package:presensi_himaster/widgets/custom_alert_responses.dart';
 
 class CustomAlertDialog {
   final TextEditingController _textController = TextEditingController();
+  final mainController = Get.find<MainController>();
+
   bool isValidate = false;
 
-  showAlertDialog(BuildContext context, String title, String desc,
-      String service, var dataCode, String token,) {
+  showAlertDialog(
+    BuildContext context,
+    String title,
+    String desc,
+    String service,
+    var dataCode,
+    String token,
+  ) {
     // set up the buttons
     Widget cancelButton = OutlinedButton(
       child: Text(
@@ -85,6 +97,7 @@ class CustomAlertDialog {
   }
 
   postKodePresensi(BuildContext context, Code dataCode, String token) async {
+    log('asdaasd');
     Navigator.pop(context);
     CustomAlertLoading().showAlertDialog(context);
     await Future.delayed(const Duration(milliseconds: 500));
@@ -97,6 +110,26 @@ class CustomAlertDialog {
     }
     Navigator.pop(context);
     CustomAlertResponses().showAlertDialog(context, isValidate, dataCode);
+  }
+
+  Future postKodePresensiQR(
+      BuildContext context, Code dataCode, String kode, String token) async {
+    if (mainController.isLoadingKode.value == false) {
+      mainController.isLoadingKode(true);
+      CustomAlertLoading().showAlertDialog(context);
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      if (kode == dataCode.code) {
+        isValidate = await PresensiApi.postAbsen(
+            dataCode.code, kode, dataCode.id, 'MOBILE', dataCode.title, token);
+      } else {
+        isValidate = false;
+      }
+      Navigator.pop(context);
+
+      CustomAlertResponses().showAlertDialog(context, isValidate, dataCode).then((value) => Navigator.pop(context));
+      
+    }
   }
 
   postKodeKegiatan(BuildContext context, var dataCode, String token) async {
