@@ -113,7 +113,7 @@ class Login extends StatelessWidget {
                                 }
                                 return null;
                               },
-                              textInputAction: TextInputAction.next,
+                              textInputAction: TextInputAction.done,
                               textAlignVertical: TextAlignVertical.center,
                               obscureText: !_passVisible.value,
                               decoration: InputDecoration(
@@ -155,14 +155,13 @@ class Login extends StatelessWidget {
                                     await AlertResponses().showAlertDialog(
                                         context,
                                         mainController.isLogin.value,
-                                        mainController.userAbsen.value.user!.name);
+                                        mainController
+                                            .userAbsen.value.user!.name);
                                     mainController.pageTransition(
                                         context, MainMenu());
                                   } else {
-                                    AlertResponses().showAlertDialog(
-                                        context,
-                                        mainController.isLogin.value,
-                                        "");
+                                    AlertResponses().showAlertDialog(context,
+                                        mainController.isLogin.value, "");
                                   }
                                 },
                                 child: const Text('Login Sekarang')),

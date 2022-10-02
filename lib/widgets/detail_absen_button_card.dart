@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:presensi_himaster/controllers/main_controller.dart';
 import 'package:presensi_himaster/models/list_absen.dart';
+import 'package:presensi_himaster/screens/qr_scan.dart';
 import 'package:presensi_himaster/theme.dart';
 import 'package:presensi_himaster/widgets/custom_alert_dialog.dart';
 
 class AbsenButtonCard extends StatelessWidget {
-  AbsenButtonCard({Key? key,  required this.dataCode})
-      : super(key: key);
+  AbsenButtonCard({Key? key, required this.dataCode}) : super(key: key);
   final MainController mainController = Get.find<MainController>();
   final CustomAlertDialog customAlertDialog = CustomAlertDialog();
   final Code dataCode;
@@ -15,7 +15,6 @@ class AbsenButtonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx((() {
-
       if (mainController.statusMap[dataCode.id] == 1) {
         return Column(
           children: [
@@ -29,7 +28,9 @@ class AbsenButtonCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
                     children: [
-                      Image.asset('assets/imgs/ui_y_big.png',),
+                      Image.asset(
+                        'assets/imgs/ui_y_big.png',
+                      ),
                       Expanded(
                           child: Text(
                         'Terimakasih sudah hadir Ya!',
@@ -41,8 +42,7 @@ class AbsenButtonCard extends StatelessWidget {
                 )),
           ],
         );
-      }
-      else if (mainController.statusMap[dataCode.id] == 2) {
+      } else if (mainController.statusMap[dataCode.id] == 2) {
         return Column(
           children: [
             const Spacer(),
@@ -55,7 +55,9 @@ class AbsenButtonCard extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
                     children: [
-                      Image.asset('assets/imgs/ui_x_big.png',),
+                      Image.asset(
+                        'assets/imgs/ui_x_big.png',
+                      ),
                       Expanded(
                           child: Text(
                         'Lain kali, jangan sampai tidak hadir!',
@@ -110,7 +112,9 @@ class AbsenButtonCard extends StatelessWidget {
                   height: 48,
                   width: 0.4 * getWidth(context),
                   child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        mainController.pageGo(context, QrScan());
+                      },
                       style: roundedButton(blueCr),
                       child: Row(
                         children: [

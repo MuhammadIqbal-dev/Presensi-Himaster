@@ -16,7 +16,6 @@ class PresensiApi {
     });
     http.Response response =
         await client.post(Uri.parse(apiUrl), headers: headers, body: body);
-    print(response.body);
     if (response.statusCode == 200) {
       um.UserModel respData = um.userModelFromJson(response.body);
       respData.data?.accessToken = 'Bearer ' + respData.data!.accessToken!;
@@ -76,14 +75,14 @@ class PresensiApi {
     });
     http.Response responses =
         await client.post(Uri.parse(apiUrl), headers: headers, body: body);
-    
-    if (responses.statusCode == 200){
+
+    if (responses.statusCode == 200) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
+
   static Future<bool> postKegiatan(String code, String token) async {
     const String apiUrl = "https://presensi.himaster.id/api/addEvent";
     var headers = {
@@ -96,11 +95,10 @@ class PresensiApi {
     });
     http.Response responses =
         await client.post(Uri.parse(apiUrl), headers: headers, body: body);
-    
-    if (responses.statusCode == 200){
+
+    if (responses.statusCode == 200) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }

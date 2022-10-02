@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:presensi_himaster/theme.dart';
 
 class AlertResponses {
-
   showAlertDialog(BuildContext context, bool isValidate, String user) async {
     Widget okeButton(String text) {
       return OutlinedButton(
@@ -62,7 +61,8 @@ class AlertResponses {
         ),
       ),
       actions: [
-        SizedBox(width: double.infinity, height: 48, child: okeButton('Okayyy!!'))
+        SizedBox(
+            width: double.infinity, height: 48, child: okeButton('Okayyy!!'))
       ],
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12.0))),
@@ -73,6 +73,7 @@ class AlertResponses {
 
     await showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         if (isValidate) {
           return alertBenar;
@@ -84,6 +85,5 @@ class AlertResponses {
     // show the dialog
   }
 
-
-    // show the dialog
-  }
+  // show the dialog
+}
